@@ -11,7 +11,7 @@ passport.use(
 		},
 		function (accessToken, refreshToken, profile, callback) {
             console.log(profile._json.email)
-			
+			callback(null, profile);
 		}
 	)
 );
