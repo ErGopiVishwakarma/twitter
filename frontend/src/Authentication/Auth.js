@@ -3,8 +3,8 @@ import React from 'react'
 
 const Auth = () => {
   return (
-    <Box>
-    </Box>
+    <Flex>
+    </Flex>
   )
 }
 
