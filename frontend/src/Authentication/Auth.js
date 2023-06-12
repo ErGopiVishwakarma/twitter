@@ -4,7 +4,9 @@ import React from 'react'
 const Auth = () => {
   return (
     <Box>
-
+<Flex>
+  
+</Flex>
     </Box>
   )
 }
