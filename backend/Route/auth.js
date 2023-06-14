@@ -20,7 +20,7 @@ authRouter.get("/login/success", async (req, res) => {
 				var token = jwt.sign({ userId: data[0]._id }, 'twitter');
 				res.status(200).send({
 					error: false,
-			
+					message: "already Logged In",
 					user: req.user,
 					token: token,
 				});
