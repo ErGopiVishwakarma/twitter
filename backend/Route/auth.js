@@ -13,17 +13,31 @@ authRouter.get("/login/success", async (req, res) => {
 	if (req.user) {
 		try {
 			const { name, email, picture } = req.user._json
-			const user = new UserModel({ name, email, picture })
-			await user.save()
-			var token = jwt.sign({ id: 'gopi' }, 'twitter');
-			res.status(200).send({
-				error: false,
-				message: "Successfully Loged In",
-				user: req.user,
-				token: token,
-			});
+			console.log(email)
+			const data = await UserModel.find({ email })
+			if (data.length >= 1) {
+				var token = jwt.sign({ userId: data[0]._id }, 'twitter');
+				res.status(200).send({
+					error: false,
+					message: "already Logged In",
+					user: req.user,
+					token: token,
+				});
+			} else {
+				const user = new UserModel({ name, email, picture })
+				await user.save()
+				console.log(user)
+				var token = jwt.sign({ userId: user._id }, 'twitter');
+				res.status(200).send({
+					error: false,
+					message: "Successfully Loged In",
+					user: req.user,
+					token: token,
+				});
+			}
+
 		} catch (error) {
-           res.status(401).json({error:true,message:error.message})
+			res.status(401).json({ error: true, message: error.message })
 		}
 	} else {
 		res.status(403).json({ error: true, message: "Not Authorized" });
