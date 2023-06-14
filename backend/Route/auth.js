@@ -37,7 +37,7 @@ authRouter.get("/login/success", async (req, res) => {
 			}
 
 		} catch (error) {
-			res.status(401).json({ error: true, message: error.message })
+			
 		}
 	} else {
 		res.status(403).json({ error: true, message: "Not Authorized" });
