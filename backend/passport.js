@@ -9,9 +9,8 @@ passport.use(
 			callbackURL: "/auth/google/callback",
 			scope: ["profile", "email"],
 		},
-		function (accessToken, refreshToken, profile, callback) {
-            console.log(profile._json.email)
-			callback(null, profile);
+		function (accessToken, refreshToken, profile,done) {
+			done(null, profile);
 		}
 	)
 );

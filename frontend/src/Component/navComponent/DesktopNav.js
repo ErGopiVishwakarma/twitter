@@ -61,7 +61,7 @@ export default function DesktopNav() {
                         </Text>
                         <Text fontSize={'14px'}>gopi@gmail.com</Text>
                     </Flex>
-                    <Text>...</Text>
+                    <Link href='http://localhost:8080/auth/logout'><Text>...</Text></Link>
                 </Flex>
                 {/* till here ..... */}
             </Flex>

@@ -3,9 +3,27 @@ import Navbar from "./Route/Navbar";
 import MainRoute from "./Route/MainRoute";
 import Auth from "./Authentication/Auth";
 import Home from "./Pages/Home";
+import { useEffect, useState } from "react";
+import axios from 'axios'
 
 
 function App() {
+  const [user, setUser] = useState(null);
+
+	const getUser = async () => {
+		try {
+			const url = `http://localhost:8080/auth/login/success`;
+			const  {data} = await axios.get(url, { withCredentials: true });
+			setUser(data);
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
+	useEffect(() => {
+		getUser();
+	}, []);
+  console.log(user)
   return (
       <Flex>
       <MainRoute />
