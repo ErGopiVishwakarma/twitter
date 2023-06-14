@@ -50,7 +50,7 @@ authRouter.get(
 	"/google/callback",
 	passport.authenticate("google", {
 		successRedirect: 'http://localhost:3000',
-		
+		failureRedirect: "/login/failed",
 	})
 );
 
