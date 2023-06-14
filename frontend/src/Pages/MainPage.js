@@ -1,9 +1,22 @@
 import { Box, Flex } from '@chakra-ui/react'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../Route/Navbar'
 import Home from './Home'
+import axios from 'axios'
 
-const Hii = () => {
+const MainPage = () => {
+
+  const [user, setUser] = useState()
+
+  const getUser = async() =>{
+    const data = await axios('http://localhost:8080/auth/login/success')
+    localStorage.setItem('twitteruserdata',JSON.stringify(data))
+  }
+
+  useEffect(()=>{
+    getUser()
+  },[])
+
   return (
     <Flex w='100%'>
         <Box w='22%'>
@@ -19,4 +32,4 @@ const Hii = () => {
   )
 }
 
-export default Hii
+export default MainPage
