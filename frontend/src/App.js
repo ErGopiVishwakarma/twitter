@@ -14,13 +14,7 @@ function App() {
   const [user, setUser] = useState(null);
 
 	const getUser = async () => {
-		try {
-			const url = `http://localhost:8080/auth/login/success`;
-			const { data } = await axios.get(url, { withCredentials: true });
-			setUser(data.user._json);
-		} catch (err) {
-			console.log(err);
-		}
+		
 	};
 
 	useEffect(() => {
