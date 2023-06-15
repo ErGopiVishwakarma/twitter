@@ -6,7 +6,12 @@ import { Box, Flex, Text, Tooltip } from '@chakra-ui/react'
 const LCSF = () => {
     return (
         <Flex gap='50px'>
-      
+            <Tooltip label="Hey, I'm here!" aria-label='A tooltip'>
+                <Flex cursor={'pointer'} alignItems={'center'} _hover={{ textColor: '#17A589' }} >
+                    <Box p="10px" _hover={{ backgroundColor: '#D5F5E3' }} borderRadius={'50%'}><FaRegComment /></Box>
+                    <Text>34</Text>
+                </Flex>
+            </Tooltip>
 
 
             <Tooltip label="Hey, I'm here!" aria-label='A tooltip'>
