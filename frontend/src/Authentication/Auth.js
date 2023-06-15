@@ -5,6 +5,10 @@ import { FcGoogle } from 'react-icons/fc'
 import { BsApple } from 'react-icons/bs'
 
 const Auth = () => {
+
+  const googleAuth = () =>{
+    window.open('http://localhost:8080/auth/google/callback','_self')
+  }
   return (
     <Flex w="100%" h='100vh' direction={{ base: 'column', md: 'column', lg: 'row' }}  >
       <Box w={{ base: '%', md: '', lg: '50%' }} px={{ base: '50px', md: '100px', lg: '170px' }} py={{ base: '50px', md: '100px', lg: '50px' }} m={{ base: 'auto' }} boxShadow={{ base: 'none', md: 'rgba(0, 0, 0, 0.24) 0px 3px 8px', lg: 'none' }}>
@@ -18,15 +22,15 @@ const Auth = () => {
           <Heading fontSize={'20px'} pt='10px'>join twitter today</Heading>
           <Flex direction={'column'} gap='15px' w={{ base: '300px', md: '400px', lg: '300px' }} pt='20px' justifyContent={'center'}>
             
-            <Button variant={'outline'} p='10px' borderRadius={'20px'}>
-              <Link href="http://localhost:8080/auth/google/callback">
+            <Button variant={'outline'} p='10px' borderRadius={'20px'} onClick={googleAuth}>
+              {/* <Link href="http://localhost:8080/auth/google/callback"> */}
               <Flex gap='20px' alignItems={'center'} justifyContent={'center'} fontSize='18px'>
                 <FcGoogle />
                 <Text>
                   sign up with google
                 </Text>
               </Flex>
-              </Link>
+              {/* </Link> */}
             </Button>
            
             <Button variant={'outline'} p='10px' borderRadius={'20px'}>

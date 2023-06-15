@@ -10,11 +10,13 @@ authRouter.get('/', (req, res) => {
 // successfull login route 
 
 authRouter.get("/login/success", async (req, res) => {
-	console.log(req.user) 
-	if (req.user) {
+	let user = req.user
+//   res.send(req.user)
+setTimeout(async()=>{
+	if (user) {
 		try {
 			const { name, email, picture } = req.user._json
-			// console.log(email)
+			// console.log(email) 
 			const data = await UserModel.find({ email })
 			if (data.length >= 1) {
 				var token = jwt.sign({ userId: data[0]._id }, 'twitter');
@@ -41,8 +43,9 @@ authRouter.get("/login/success", async (req, res) => {
 			res.status(401).json({ error: true, message: error.message })
 		}
 	} else {
-		res.status(403).json({ error: true, message: "Not Authorized" });
+		res.status(401).json({ error: true, message: "Not Authorized" });
 	}
+},2000)
 });
 
 
@@ -58,7 +61,6 @@ authRouter.get("/login/failed", (req, res) => {
 
 // authentication request route 
 authRouter.get("/google", passport.authenticate("google", ["profile", "email"]), (req, res) => {
-	console.log(req)
 });
 
 authRouter.get(
