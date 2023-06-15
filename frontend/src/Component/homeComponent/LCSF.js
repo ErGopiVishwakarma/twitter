@@ -41,7 +41,11 @@ const LCSF = () => {
             </Tooltip>
 
 
-          
+            <Tooltip label="Hey, I'm here!" aria-label='A tooltip'>
+                <Flex alignItems={'center'} _hover={{ textColor: '#17A589' }}>
+                    <FaShare />
+                </Flex>
+            </Tooltip>
         </Flex>
     )
 }
