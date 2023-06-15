@@ -21,17 +21,18 @@ import {
     FiCheck,
 } from 'react-icons/fi';
 import { VscTwitter } from "react-icons/vsc"
+import { NavLink } from 'react-router-dom';
 
 const LinkItems = [
-    { name: 'Home', icon: FiHome },
-    { name: 'Explore', icon: FiSearch },
-    { name: 'Notifications', icon: FiBell },
-    { name: 'Messages', icon: FiMessageSquare },
-    { name: 'Lists', icon: FiList },
-    { name: 'Bookmarks', icon: FiBookmark },
-    { name: 'Veirfied', icon: FiCheck },
-    { name: 'Profile', icon: FiUser },
-    { name: 'More', icon: FiMenu },
+    { name: 'Home', icon: FiHome,link:'/' },
+    { name: 'Explore', icon: FiSearch,link:'/explore' },
+    { name: 'Notifications', icon: FiBell,link:'/notification' },
+    { name: 'Messages', icon: FiMessageSquare,link:'/message' },
+    { name: 'Lists', icon: FiList ,link:'/list'},
+    { name: 'Bookmarks', icon: FiBookmark ,link:'/bookmark'},
+    { name: 'Veirfied', icon: FiCheck ,link:'/verified'},
+    { name: 'Profile', icon: FiUser,link:'/profile' },
+    { name: 'More', icon: FiMenu ,link:'/more'},
 ];
 
 export default function TabletNav() {
@@ -44,7 +45,7 @@ export default function TabletNav() {
                     </Box>
                 </Flex>
                 {LinkItems.map((link) => (
-                    <NavItem key={link.name} icon={link.icon}>
+                    <NavItem key={link.name} icon={link.icon} link={link.link}>
                         {link.name}
                     </NavItem>
                 ))}
@@ -62,9 +63,9 @@ export default function TabletNav() {
 }
 
 
-const NavItem = ({ icon, children }) => {
+const NavItem = ({ icon,link}) => {
     return (
-        <Link href="#" style={{ textDecoration: 'none' }} >
+        <NavLink to={link} style={{ textDecoration: 'none' }} >
             <Flex
                 fontSize={'20px'}
                 align="center"
@@ -83,6 +84,6 @@ const NavItem = ({ icon, children }) => {
                 )}
               
             </Flex>
-        </Link>
+        </NavLink>
     );
 };

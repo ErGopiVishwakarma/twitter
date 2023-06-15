@@ -14,11 +14,11 @@ function App() {
 	const twitteruser = localStorage.getItem('twitteruser') || ""
   
   return (
-      <>
+      <Box>
 		{
-			twitteruser?<MainRoute />:<Login />
+			twitteruser?<MainPage />:<Login />
 		}
-	  </>
+	  </Box>
       
   );
 }

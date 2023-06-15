@@ -1,18 +1,16 @@
-import { Box, Flex, Heading, Text } from '@chakra-ui/react'
+import { Box, Flex, Heading, Stack, Text, VStack } from '@chakra-ui/react'
 import React from 'react'
+import Post from '../Component/homeComponent/Post'
 
 const Home = () => {
   return ( 
-    <Box>
-      <Flex justifyContent={'center'} alignItems={'center'}>
-             <Text>
-              this is home page
-              and something else
-             </Text>
-             <Heading>
-              gopi
-             </Heading>
-      </Flex>
+    <Box w="100%" px="20px" overflowY={'scroll'} h="100vh">
+     <VStack>
+        <Post />
+        <Post />
+        <Post />
+        <Post />
+     </VStack>
     </Box>
   )
 }
