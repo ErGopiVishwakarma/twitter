@@ -33,12 +33,7 @@ const LCSF = () => {
             </Tooltip>
 
 
-            <Tooltip label="Hey, I'm here!" aria-label='A tooltip'>
-                <Flex alignItems={'center'} _hover={{ textColor: 'green' }}>
-                    <Box p="10px" _hover={{ backgroundColor: '#AED6F1' }} borderRadius={'50%'}><FaStreetView p="10px" /></Box>
-                    <Text>34</Text>
-                </Flex>
-            </Tooltip>
+            
 
 
             <Tooltip label="Hey, I'm here!" aria-label='A tooltip'>
