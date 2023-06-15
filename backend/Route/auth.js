@@ -12,7 +12,6 @@ authRouter.get('/', (req, res) => {
 authRouter.get("/login/success", async (req, res) => {
 
 		try {
-			console.log(req.user)
 			const { name, email, picture } = req.user._json
 			const data = await UserModel.find({ email })
 			if (data.length >= 1) {
@@ -26,7 +25,6 @@ authRouter.get("/login/success", async (req, res) => {
 			} else {
 				const user = new UserModel({ name, email, picture })
 				await user.save()
-				// console.log(user)
 				var token = jwt.sign({ userId: user._id }, 'twitter');
 				res.status(200).send({
 					error: false,

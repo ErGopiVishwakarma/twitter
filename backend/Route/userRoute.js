@@ -2,7 +2,6 @@
 const express = require('express')
 const UserModel = require('../model/userModel')
 const jwt = require('jsonwebtoken')
-const bcryptjs = require('bcryptjs')
 const authenticate = require('../middleware/authentication')
 
 const userRouter = express.Router()
@@ -28,7 +27,7 @@ userRouter.post('/login', async (req, res) => {
         const user = await UserModel.find({ email })
         if (user.length > 0) {
                     const token = jwt.sign({ userId: user[0]._id }, 'twitter')
-                    res.send({ msg: 'user has been successfully login...', token, user })
+                    res.send({ msg: 'user has been successfully login...', token, user:user[0] })
         } else {
             res.send({ msg: 'login failed...' })
         }

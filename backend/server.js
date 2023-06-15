@@ -8,6 +8,7 @@ const passportStrategy = require("./passport");
 const connection = require('./db');
 const authenticate = require("./middleware/authentication");
 const postRouter = require("./Route/postRoute");
+const { userRouter } = require("./Route/userRoute");
 
 
 const app = express();
@@ -24,7 +25,7 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(cors())
+app.use(cors()) 
 // app.use(
 // 	cors({
 // 		origin: "http://localhost:3000",
@@ -40,7 +41,7 @@ app.use("/auth", authRoute);
 
 //till here
 
-
+app.use('/user',userRouter)
 app.use('/post',authenticate,postRouter)
 
 

@@ -1,15 +1,13 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
-import Home from '../Pages/Home'
-import Auth from '../Authentication/Auth'
-import Hii from '../Pages/MainPage'
 import MainPage from '../Pages/MainPage'
+import Login from '../auth/Login'
 
 const MainRoute = () => {
   return (
     <Routes>
       <Route path='/' element={<MainPage />} />
-      <Route path='/auth' element={<Auth />} />
+      <Route path='/auth' element={<Login/>} />
 
     </Routes>
   )

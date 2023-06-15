@@ -6,17 +6,6 @@ import axios from 'axios'
 
 const MainPage = () => {
 
-  const [user, setUser] = useState()
-
-  const getUser = async() =>{
-    const data = await axios('http://localhost:8080/auth/login/success')
-    localStorage.setItem('twitteruserdata',JSON.stringify(data))
-  }
-
-  useEffect(()=>{
-    getUser()
-  },[])
-
   return (
     <Flex w='100%'>
         <Box w='22%'>
