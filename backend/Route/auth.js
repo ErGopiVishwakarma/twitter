@@ -7,16 +7,13 @@ authRouter.get('/', (req, res) => {
 	res.send('this is auth page')
 })
 
-// successfull login route 
+// successfull login route  
 
 authRouter.get("/login/success", async (req, res) => {
-	let user = req.user
-//   res.send(req.user)
-setTimeout(async()=>{
-	if (user) {
+
 		try {
+			console.log(req.user)
 			const { name, email, picture } = req.user._json
-			// console.log(email) 
 			const data = await UserModel.find({ email })
 			if (data.length >= 1) {
 				var token = jwt.sign({ userId: data[0]._id }, 'twitter');
@@ -42,10 +39,7 @@ setTimeout(async()=>{
 		} catch (error) {
 			res.status(401).json({ error: true, message: error.message })
 		}
-	} else {
-		res.status(401).json({ error: true, message: "Not Authorized" });
-	}
-},2000)
+
 });
 
 

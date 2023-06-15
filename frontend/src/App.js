@@ -28,7 +28,7 @@ function App() {
 	};
 
 	useEffect(() => {
-		getUser();
+			getUser();
 		localStorage.setItem('twitteruserdata',JSON.stringify(user))
 	}, []);
 	console.log(user)

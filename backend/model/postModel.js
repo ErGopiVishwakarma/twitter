@@ -3,7 +3,8 @@ const mongoose = require('mongoose')
 const postSchema = mongoose.Schema({
   content:{type:String,default:""},
   picture:{type:String,default:""},
-  postedBy:{type:mongoose.Schema.Types.ObjectId, ref:"User"}
+  postedBy:{type:mongoose.Schema.Types.ObjectId, ref:"User"},
+  likes:[{type:mongoose.Schema.Types.ObjectId, ref:"User"}]
 },{
     timestamps:true,
     _v:false

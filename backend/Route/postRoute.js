@@ -19,20 +19,58 @@ postRouter.post('/createpost',async(req,res)=>{
     }
     try {
         const post = new PostModel({content,picture,postedBy:req.user._id})
-        await post.save()
-        res.send({msg:post})
+        await post.save().then(result=>{
+            res.send({data:result})
+        })
     } catch (error) {
-        res.send({err:error.message})
+        res.status(403).send({err:error.message})
+    }
+})
+
+postRouter.get('/getpost',async(req,res)=>{
+    try {
+         const post = await PostModel.find({postedBy:req.user._id}).populate("postedBy")
+         res.send(post)
+    } catch (error) {
+        res.status(402).send({err:error.message})
     }
 })
 
 postRouter.get('/getallpost',async(req,res)=>{
     try {
-        const post = await PostModel.find({postedBy:req.user._id})
-        res.send(post)
+         const post = await PostModel.find().populate('postedBy')
+         res.send(post)
     } catch (error) {
-        
+        res.status(402).send({err:error.message})
     }
+})
+
+postRouter.put('/like',async(req,res)=>{
+    PostModel.findByIdAndUpdate(req.body.postId,{
+        $push:{likes:req.user._id}
+    },{
+        new:true
+    }).exec((err,result)=>{
+        if(err){
+            return res.status(400).send({msg:err.message})
+        }else{
+            res.send(result)
+        }
+    })
+})
+
+postRouter.put('/dislike',async(req,res)=>{
+    PostModel.findByIdAndUpdate(req.body.postId,{
+        $pull:{likes:req.user._id}
+    },{
+        new:true
+    }).exec((err,result)=>{
+        if(err){
+            return res.status(400).send({msg:err.message})
+        }else{
+            res.send(result)
+        }
+    })
 })
 
 module.exports = postRouter
