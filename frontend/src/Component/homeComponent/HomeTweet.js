@@ -1,26 +1,23 @@
 import { Avatar, Box, Button, Flex, Input, Textarea, Tooltip, useToast } from '@chakra-ui/react'
-import React from 'react'
+import React, { useState } from 'react'
 import { MdPermMedia } from 'react-icons/md'
 import { AiOutlineFileGif } from 'react-icons/ai'
 import { BiPoll } from 'react-icons/bi'
 import { BsEmojiSmile } from 'react-icons/bs'
+import axios from 'axios'
 
 const HomeTweet = () => {
+    const [text,setText] = useState("")
+    let [pic,setPic] = useState("")
     const toast = useToast()
+    const token = JSON.parse(localStorage.getItem('twitteruser'))
 
     const setProfile=async(pics)=>{
-
         if (pics === undefined) {
-          toast({
-            title: "Please Select an Image!",
-            status: "warning",
-            duration: 3000,
-            isClosable: true,
-            position: "bottom",
-          });
+          alert('field are required')
           return;
         }
-        if (pics.type === "image/jpeg" || pics.type === "image/jpg" || pics.type === "image/png") {
+        // if (pics.type === "image/jpeg" || pics.type === "image/jpg" || pics.type === "image/png" || pics.type === "image/gif") {
           const data = new FormData();
           data.append("file", pics);
           data.append("upload_preset", "chat-app");
@@ -31,18 +28,39 @@ const HomeTweet = () => {
           const value= await axios.post('https://api.cloudinary.com/v1_1/dr2fwpzbx/image/upload',data,config)
           setPic(value.data.url)
            
-        } else {
-          toast({
-            title: "failed",
-            description:'image should be jpeg/png formate',
-            status: "warning",
-            duration: 3000,
-            isClosable: true,            
-            position:'top'
-          });
-          return;
-        }
+        // } else {
+        //   alert('image should be jpg/png formate')
+        //   return;
+        // }
     }
+  
+const makePost = async() =>{
+    if(!text && !pic){
+        alert('please write something')
+        return;
+    }
+    if(!pic){
+        pic = ""
+    }
+    try {
+        const config = {
+            headers : {
+                'Content-Type' : 'application/json',
+                Authorization : `Bearer ${token.token}`
+            }
+        }
+       
+        // setNewMessage('')
+        const data = await axios.post(`http://localhost:8080/post/createpost`,{
+            content:text,
+            picture:pic,
+        },config)
+        console.log(data)
+    } catch (error) {
+        console.log(error.message)
+        alert('ohh something went wrong')
+    }
+ }
 
     return (
         <Flex w='100%' pt="70px" pb="20px" gap="20px">
@@ -50,13 +68,13 @@ const HomeTweet = () => {
                 <Avatar h="40px" w='40px' />
             </Box>
             <Flex w='100%' direction={'column'} gap='10px'>
-                <Textarea wordBreak={"break-all"} wordWrap="break-word" placeholder='what is happening' fontSize={'22px'} />
+                <Textarea  placeholder='what is happening' fontSize={'22px'} value={text} onChange={(e)=>setText(e.target.value)} />
                 <Flex justifyContent={'space-between'} >
                     <Flex gap='30px'>
                         <Tooltip label="media" aria-label='A tooltip' placement='bottom' hasArrow>
-                            <Box color="blue.400">
-                            {/* <Input type='file'  /> */}
-                                <MdPermMedia fontSize="22px" />
+                            <Box color="blue.400" >
+                            <Input type='file' id="image-media" accept='image/*' display={'none'} onChange={(e)=>setProfile(e.target.files[0])}/>                                
+                                <label for="image-media"><MdPermMedia fontSize="22px" cursor={'pointer'} /></label>
                             </Box>
                         </Tooltip>
                         <Tooltip label="gif" aria-label='A tooltip' placement='bottom' hasArrow>
@@ -75,7 +93,7 @@ const HomeTweet = () => {
                             </Box>
                         </Tooltip>
                     </Flex>
-                    <Button bg={'blue.400'} colorScheme={'white'} borderRadius={'50px'} >
+                    <Button bg={'blue.400'} colorScheme={'white'} borderRadius={'50px'} onClick={makePost} >
                         tweet
                     </Button>
 

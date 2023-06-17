@@ -3,7 +3,7 @@ import React from 'react'
 import LCSF from './LCSF'
 
 
-const Post = () => {
+const Post = ({el}) => {
     return (
         <Flex gap="20px" w="100%">
             <Box>
@@ -11,14 +11,14 @@ const Post = () => {
             </Box>
             <Flex w='100%' direction={'column'} alignItems={'flex-start'} gap="8px">
                 <Flex justifyContent={'space-between'} w="100%" >
-                        <Heading fontSize="18px">gopi vishwakarma</Heading>
+                        <Heading fontSize="18px">{el.postedBy.name}</Heading>
                         <Heading fontSize="18px" cursor={'pointer'} >...</Heading>
                 </Flex>
                 <Text>
-                    this is anajana yadav abp new anchorhjk dhgjd jh jf hg fjhg jgfhfg  dhgg gg d hdgfhg gfhg hdghdgh gfh dh dfgh
+                    {el.content}
                 </Text>
                 <Box borderRadius={'25px'} w="100%">
-                    <Image src="https://pbs.twimg.com/media/FypJ11NaAAA3DP7?format=jpg&name=small" borderRadius={'25px'} />
+                    <Image src={el.picture} borderRadius={'25px'} />
                 </Box>
                 <LCSF />
             </Flex>

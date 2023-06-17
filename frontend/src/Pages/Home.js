@@ -1,9 +1,38 @@
 import { Box, Flex, Heading, Stack, Text, VStack } from '@chakra-ui/react'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Post from '../Component/homeComponent/Post'
 import HomeTweet from '../Component/homeComponent/HomeTweet'
+import axios from 'axios'
 
 const Home = () => {
+
+  const [post, setPost] = useState([])
+  const token = JSON.parse(localStorage.getItem('twitteruser'))
+  const getPost = async() =>{
+    try {
+      const config = {
+          headers : {
+              'Content-Type' : 'application/json',
+              Authorization : `Bearer ${token.token}`
+          }
+      }
+     
+      // setNewMessage('')
+      const {data} = await axios.get(`http://localhost:8080/post/getpost`,config)
+      console.log(data)
+      setPost(data)
+      
+  } catch (error) {
+      console.log(error.message)
+      alert('ohh something went wrong')
+  }
+  }
+
+  useEffect(()=>{
+    getPost()
+  },[])
+
+
   return ( 
     <Box w="100%" px="20px" overflowY={'auto'} h="100vh"   position={'relative'} 
     css={{
@@ -23,10 +52,11 @@ const Home = () => {
     </Box>
     <HomeTweet />
      <VStack spacing={'20px'}>
-        <Post />
-        <Post />
-        <Post />
-        <Post />
+      {
+        post?.map(el=>(
+          <Post el={el} key={el._id} />
+        ))
+      }
      </VStack>
     </Box>
   )

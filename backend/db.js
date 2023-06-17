@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
 
-const connection = mongoose.connect('mongodb://127.0.0.1:27017/twitter')
+const connection = mongoose.connect('mongodb+srv://gopi:gopialpha@cluster0.ge7c9ga.mongodb.net/Twitter?retryWrites=true&w=majority')
 
 module.exports = connection
