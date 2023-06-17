@@ -37,7 +37,20 @@ const LinkItems = [
 
 export default function DesktopNav() {
     return (
-        <Box maxH="100vh" overflowY={'scroll'} w='100%'>
+        <Box maxH="100vh" overflowY={'auto'} w='100%' 
+          css={{
+    '&::-webkit-scrollbar': {
+      width: '4px',
+    },
+    '&::-webkit-scrollbar-track': {
+      width: '6px',
+    },
+    '&::-webkit-scrollbar-thumb': {
+     background:'gray',
+      borderRadius: '24px',
+    },
+  }}
+        >
             <Flex direction={'column'} overflow={'srcoll'} w='100%'>
                 <Flex alignItems="center" mx="8" justifyContent="space-between" >
                     <Box p='11px' _hover={{bg:'pink'}} borderRadius={'50%'}>

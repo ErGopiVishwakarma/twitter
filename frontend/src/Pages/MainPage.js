@@ -9,14 +9,14 @@ const MainPage = () => {
 
   return (
     <Flex w='100%'>
-      <Box w='23%'>
+      <Box w={{basea:'',md:'auto',lg:'23%'}}>
         <Navbar />
       </Box>
-      <Box w='48%'>
+      <Box w={{base:'100%',md:'77%',lg:'48%'}}>
         <MainRoute />
       </Box>
       <Box w='31%' display={{ base: 'none', md: 'none', lg: 'block' }}>
-        <Navbar />
+        {/* <Navbar /> */}
       </Box>
     </Flex>
   )

@@ -15,7 +15,7 @@ const LCSF = () => {
 
 
             <Tooltip label="like" aria-label='A tooltip'>
-                <Flex alignItems={'center'} _hover={{ textColor: '#943126 ' }}>
+                <Flex cursor={'pointer'} alignItems={'center'} _hover={{ textColor: '#943126 ' }}>
                     <Box p="10px" _hover={{ backgroundColor: '#FADBD8' }} borderRadius={'50%'}>
                         <BsHeart />
                     </Box>
@@ -26,7 +26,7 @@ const LCSF = () => {
 
 
             <Tooltip label="retweet" aria-label='A tooltip'>
-                <Flex alignItems={'center'} _hover={{ textColor: '#2874A6' }}>
+                <Flex cursor={'pointer'} alignItems={'center'} _hover={{ textColor: '#2874A6' }}>
                     <Box p="10px" _hover={{ backgroundColor: '#AED6F1' }} borderRadius={'50%'}><FaRetweet /></Box>
                     <Text>34</Text>
                 </Flex>
@@ -34,7 +34,7 @@ const LCSF = () => {
 
 
             <Tooltip label="views" aria-label='A tooltip'>
-                <Flex alignItems={'center'} _hover={{ textColor: 'green' }}>
+                <Flex cursor={'pointer'} alignItems={'center'} _hover={{ textColor: 'green' }}>
                     <Box p="10px" _hover={{ backgroundColor: '#AED6F1' }} borderRadius={'50%'}><FaStreetView p="10px" /></Box>
                     <Text>34</Text>
                 </Flex>
@@ -42,7 +42,7 @@ const LCSF = () => {
 
 
             <Tooltip label="share" aria-label='A tooltip'>
-                <Flex alignItems={'center'} _hover={{ textColor: '#17A589' }}>
+                <Flex cursor={'pointer'} alignItems={'center'} _hover={{ textColor: '#17A589' }}>
                     <FaShare />
                 </Flex>
             </Tooltip>

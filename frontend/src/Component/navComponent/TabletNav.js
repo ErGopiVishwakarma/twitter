@@ -22,6 +22,7 @@ import {
 } from 'react-icons/fi';
 import { VscTwitter } from "react-icons/vsc"
 import { NavLink } from 'react-router-dom';
+import {CgTwitter} from 'react-icons/cg'
 
 const LinkItems = [
     { name: 'Home', icon: FiHome,link:'/' },
@@ -37,9 +38,9 @@ const LinkItems = [
 
 export default function TabletNav() {
     return (
-        <Box maxH="100vh" overflowY={'scroll'} w='100%'>
-            <Flex direction={'column'} overflow={'srcoll'} w='100%'>
-                <Flex alignItems="center" mx="8" justifyContent="space-between" >
+        <Flex alignItems={'center'} justifyContent={'center'} maxH="100vh" overflowY={'scroll'} w='100%' px="50px" position={'relative'}>
+            <Flex direction={'column'} overflow={'srcoll'} w='100%' gap="20px">
+                <Flex alignItems="center"  justifyContent="space-between" >
                     <Box p='11px' _hover={{ bg: 'pink' }} borderRadius={'50%'}>
                         <VscTwitter color='#1D9BF0' fontSize={'35px'} />
                     </Box>
@@ -51,14 +52,16 @@ export default function TabletNav() {
                 ))}
 
                 {/* extra added code for identification  */}
-                <Button p='6' mx='8' bg='blue.400' borderRadius={'50px'}>tweet</Button>
+                <Button   bg='blue.400' borderRadius={'50%'}>
+                    <CgTwitter color='white' />
+                </Button>
                 
-                    <Box>
+                    <Box position={'absolute'} bottom={'0px'}>
                         <Avatar w='35px' h='35px' src="" name='gopi vish' />
                     </Box>
                 {/* till here ..... */}
             </Flex>
-        </Box>
+        </Flex>
     );
 }
 
@@ -69,15 +72,15 @@ const NavItem = ({ icon,link}) => {
             <Flex
                 fontSize={'20px'}
                 align="center"
-                px="4"
+               
                 py='3'
-                mx="8"
+               
                 role="group"
                 cursor="pointer">
                 {icon && (
                     <Icon
                         mr="4"
-                        fontSize="20"
+                        fontSize="25"
                         as={icon}
                         color={'blackAlpha.900'}
                     />
