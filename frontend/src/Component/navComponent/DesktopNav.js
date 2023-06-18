@@ -52,9 +52,9 @@ export default function DesktopNav() {
     },
   }}
         >
-            <Flex direction={'column'} overflow={'srcoll'} w='100%'>
-                <Flex alignItems="center" mx="8" justifyContent="space-between" >
-                    <Box p='11px' _hover={{bg:'pink'}} borderRadius={'50%'}>
+            <Flex direction={'column'} overflow={'srcoll'} w='100%' pr='100px'>
+                <Flex alignItems="center" justifyContent="space-between" >
+                    <Box py='11px' _hover={{bg:'pink'}} borderRadius={'50%'}>
                     <VscTwitter color='#1D9BF0' fontSize={'35px'}/>
                     </Box>
                 </Flex>
@@ -66,7 +66,7 @@ export default function DesktopNav() {
 
                 {/* extra added code for identification  */}
                     <TweetModal />
-                <Flex p='4' mx='6' justifyContent={'space-between'} alignItems={'center'}>
+                <Flex  justifyContent={'space-between'} alignItems={'center'}>
                     <Box>
                         <Avatar w='35px' h='35px' src="" name='gopi vish' />
                     </Box>
@@ -91,9 +91,9 @@ const NavItem = ({ icon, children, link}) => {
             <Flex
             fontSize={'20px'}
                 align="center"
-                px="4"
+              
                 py='3'
-                mx="8"
+                
                 role="group"
                 cursor="pointer">
                 {icon && (

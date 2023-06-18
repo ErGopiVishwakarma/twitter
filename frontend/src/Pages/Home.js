@@ -16,8 +16,6 @@ const Home = () => {
               Authorization : `Bearer ${token.token}`
           }
       }
-     
-      // setNewMessage('')
       const {data} = await axios.get(`http://localhost:8080/post/getallpost`,config)
       console.log(data)
       setPost(data)
@@ -47,7 +45,7 @@ const Home = () => {
     },
   }}
     >
-    <Box w="100%" h="60px" position={'fixed'} zIndex={99} bg="white">
+    <Box w="100%" h="60px" position={'fixed'} zIndex={1}  bg="white" >
       <Heading fontSize={'22px'}>Home</Heading>
     </Box>
     <HomeTweet />

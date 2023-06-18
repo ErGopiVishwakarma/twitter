@@ -47,7 +47,7 @@ const TweetModal = () => {
     }
     return (
         <>
-            <Button variant={'unstyled'} onClick={onOpen} mx='8' fontSize="18px" color="white" bg='blue.400' borderRadius={'50px'}>tweet</Button>
+            <Button variant={'unstyled'} onClick={onOpen} mb='10px' fontSize="18px" color="white" bg='blue.400' borderRadius={'50px'}>tweet</Button>
 
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />

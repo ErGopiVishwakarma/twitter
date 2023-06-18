@@ -25,9 +25,11 @@ import { BsEmojiSmile } from 'react-icons/bs'
 import axios from 'axios'
 import '../Style/comment.css'
 
-const CommentModal = ({ children }) => {
+const CommentModal = ({ children,user,postId ,setComment}) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [pic, setPic] = useState("")
+    const token = JSON.parse(localStorage.getItem('twitteruser'))
+    const [text,setText] = useState('')
 
     const setProfile = async (pics) => {
         const data = new FormData();
@@ -39,6 +41,29 @@ const CommentModal = ({ children }) => {
         }
         const value = await axios.post('https://api.cloudinary.com/v1_1/dr2fwpzbx/image/upload', data, config)
         setPic(value.data.url)
+    }
+
+    // comment logic here 
+
+    const commentFun = async() =>{
+        try {
+            const config = {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token.token}`
+                }
+            }
+            const data = await axios.put(`http://localhost:8080/post/comment`, {
+                text,
+                postId
+            }, config)
+            console.log(data)
+           let length = data.data.comments.length
+           setComment(length)
+        } catch (error) {
+            console.log(error.message)
+            alert('ohh something went wrong')
+        }
     }
     return (
         <>
@@ -56,23 +81,23 @@ const CommentModal = ({ children }) => {
                         <Flex direction={'column'} gap="50px">
                             <Flex gap="20px" w="100%">
                                 <Box>
-                                    <Avatar src='' h="40px" w='40px' />
+                                    <Avatar src={user.postedBy.pic} h="40px" w='40px' />
                                 </Box>
                                 <Flex w='100%' direction={'column'} alignItems={'flex-start'} gap="8px">
                                     <Flex justifyContent={'space-between'} w="100%" >
-                                        <Heading fontSize="18px">gopi</Heading>
+                                        <Heading fontSize="18px">{user.postedBy.name}</Heading>
                                     </Flex>
                                     <Text fontSize="18px">
-                                        giiii
+                                        {user.content.substring(0,30)}...
                                     </Text>
                                     <Text fontSize="18px">
-                                        replying to : @gopi vishwaka
+                                        replying to : @{user.postedBy.name}
                                     </Text>
                                 </Flex>
                             </Flex>
                             <Flex gap="20px" w="100%">
                                 <Box>
-                                    <Avatar src='' h="40px" w='40px' />
+                                    <Avatar src={token.user.pic} h="40px" w='40px' />
                                 </Box>
                                 <Flex w='100%' direction={'column'} alignItems={'flex-start'} gap="8px">
                                     <Textarea id="commentInput" placeholder='Tweet your reply!' fontSize={'20px'} variant={'unstyled'} minH={'100px'}
@@ -87,6 +112,7 @@ const CommentModal = ({ children }) => {
                                                 borderRadius: '24px',
                                             },
                                         }}
+                                        onChange={(e)=>setText(e.target.value)}
                                     />
 
                                 </Flex>
@@ -119,7 +145,7 @@ const CommentModal = ({ children }) => {
                                 </Box>
                             </Tooltip>
                         </Flex>
-                        <Button colorScheme='blue' mr={3} borderRadius={'50px'} >
+                        <Button colorScheme='blue' mr={3} borderRadius={'50px'} onClick={commentFun} >
                             Reply
                         </Button>
 

@@ -6,10 +6,11 @@ import axios from 'axios'
 import { VscHeart } from 'react-icons/vsc'
 import CommentModal from '../CommentModal'
 
-const LCSF = ({ postId }) => {
+const LCSF = ({ postId,user }) => {
     const token = JSON.parse(localStorage.getItem('twitteruser'))
     const [like, setLike] = useState(0)
     const [likeColor, setLikeColor] = useState()
+    const [comment, setComment] = useState(0)
     const likeFun = async () => {
         try {
             const config = {
@@ -52,6 +53,7 @@ const LCSF = ({ postId }) => {
             }
             let length = data.data.likes.length
             setLike(length)
+            setComment(data.data.comments.length)
         } catch (error) {
             console.log(error.message)
             alert('ohh something went wrong')
@@ -62,14 +64,18 @@ const LCSF = ({ postId }) => {
         likeRenderFun()
     }, [])
 
+    // comment logic here 
+
+
+
     return (
         <Flex gap='50px'>
             <Tooltip label="reply" aria-label='A tooltip'>
                 <Flex cursor={'pointer'} alignItems={'center'} _hover={{ textColor: '#17A589' }} >
-                    <CommentModal>
+                    <CommentModal user={user} postId={postId} setComment={setComment}>
                     <Box p="10px" _hover={{ backgroundColor: '#D5F5E3' }} borderRadius={'50%'}><FaRegComment fontSize={"20px"} /></Box>
                     </CommentModal>
-                    <Text>34</Text>
+                    <Text>{comment}</Text>
                 </Flex>
             </Tooltip>
 
