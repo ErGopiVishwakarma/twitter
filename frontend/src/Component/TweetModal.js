@@ -61,10 +61,7 @@ const TweetModal = () => {
                                 <Avatar src={token.user.pic} h="40px" w='40px' />
                             </Box>
                             <Flex direction={'column'} w='100%'>
-                                <Select h={'25px'} w="150px" display={'flex'} alignItems={'center'} justifyContent={'center'} color={'blue.500'}>
-                                    <option value="everyone">everyone</option>
-                                    <option value="twitter circle">twitter circle</option>
-                                </Select>
+                               
                                 <Textarea w="100%" placeholder='what is happening' fontSize={'22px'} value={text} minH="100px" onChange={(e) => setText(e.target.value)}
                                     variant={'unstyled'}
                                     css={{
