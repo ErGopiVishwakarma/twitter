@@ -4,6 +4,7 @@ import { BsHeart, BsFillHeartFill, BsHeartFill } from 'react-icons/bs'
 import { Box, Flex, Text, Tooltip } from '@chakra-ui/react'
 import axios from 'axios'
 import { VscHeart } from 'react-icons/vsc'
+import CommentModal from '../CommentModal'
 
 const LCSF = ({ postId }) => {
     const token = JSON.parse(localStorage.getItem('twitteruser'))
@@ -65,7 +66,9 @@ const LCSF = ({ postId }) => {
         <Flex gap='50px'>
             <Tooltip label="reply" aria-label='A tooltip'>
                 <Flex cursor={'pointer'} alignItems={'center'} _hover={{ textColor: '#17A589' }} >
+                    <CommentModal>
                     <Box p="10px" _hover={{ backgroundColor: '#D5F5E3' }} borderRadius={'50%'}><FaRegComment fontSize={"20px"} /></Box>
+                    </CommentModal>
                     <Text>34</Text>
                 </Flex>
             </Tooltip>
@@ -77,8 +80,6 @@ const LCSF = ({ postId }) => {
                         {
                             likeColor ? <BsHeartFill color='red' fontSize={"20px"} /> : <BsHeart fontSize={"20px"} />
                         }
-
-
                     </Box>
                     <Text>{like}</Text>
                 </Flex>

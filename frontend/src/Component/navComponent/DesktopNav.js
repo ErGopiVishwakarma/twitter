@@ -22,6 +22,7 @@ import {
 } from 'react-icons/fi';
 import { VscTwitter } from "react-icons/vsc"
 import { NavLink } from 'react-router-dom';
+import TweetModal from '../TweetModal';
 
 const LinkItems = [
     { name: 'Home', icon: FiHome,link:'/' },
@@ -64,7 +65,7 @@ export default function DesktopNav() {
                 ))}
 
                 {/* extra added code for identification  */}
-                <Button p='6' mx='8' bg='blue.400' borderRadius={'50px'}>tweet</Button>
+                    <TweetModal />
                 <Flex p='4' mx='6' justifyContent={'space-between'} alignItems={'center'}>
                     <Box>
                         <Avatar w='35px' h='35px' src="" name='gopi vish' />

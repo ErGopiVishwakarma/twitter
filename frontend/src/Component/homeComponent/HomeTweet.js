@@ -7,50 +7,50 @@ import { BsEmojiSmile } from 'react-icons/bs'
 import axios from 'axios'
 
 const HomeTweet = () => {
-    const [text,setText] = useState("")
-    let [pic,setPic] = useState("")
+    const [text, setText] = useState("")
+    let [pic, setPic] = useState("")
     const toast = useToast()
     const token = JSON.parse(localStorage.getItem('twitteruser'))
 
-    const setProfile=async(pics)=>{
-          const data = new FormData();
-          data.append("file", pics);
-          data.append("upload_preset", "chat-app");
-          data.append("cloud_name", "dr2fwpzbx");
-          const config={
-            mode:'no-cors',
-          }
-          const value= await axios.post('https://api.cloudinary.com/v1_1/dr2fwpzbx/image/upload',data,config)
-          setPic(value.data.url)
-    }
-  
-const makePost = async() =>{
-    if(!text && !pic){
-        alert('please write something')
-        return;
-    }
-    if(!pic){
-        pic = ""
-    }
-    try {
+    const setProfile = async (pics) => {
+        const data = new FormData();
+        data.append("file", pics);
+        data.append("upload_preset", "chat-app");
+        data.append("cloud_name", "dr2fwpzbx");
         const config = {
-            headers : {
-                'Content-Type' : 'application/json',
-                Authorization : `Bearer ${token.token}`
-            }
+            mode: 'no-cors',
         }
-       
-        // setNewMessage('')
-        const data = await axios.post(`http://localhost:8080/post/createpost`,{
-            content:text,
-            picture:pic,
-        },config)
-        console.log(data)
-    } catch (error) {
-        console.log(error.message)
-        alert('ohh something went wrong')
+        const value = await axios.post('https://api.cloudinary.com/v1_1/dr2fwpzbx/image/upload', data, config)
+        setPic(value.data.url)
     }
- }
+
+    const makePost = async () => {
+        if (!text && !pic) {
+            alert('please write something')
+            return;
+        }
+        if (!pic) {
+            pic = ""
+        }
+        try {
+            const config = {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token.token}`
+                }
+            }
+
+            // setNewMessage('')
+            const data = await axios.post(`http://localhost:8080/post/createpost`, {
+                content: text,
+                picture: pic,
+            }, config)
+            console.log(data)
+        } catch (error) {
+            console.log(error.message)
+            alert('ohh something went wrong')
+        }
+    }
 
     return (
         <Flex w='100%' pt="70px" pb="20px" gap="20px">
@@ -58,12 +58,25 @@ const makePost = async() =>{
                 <Avatar src={token.user?.pic} h="40px" w='40px' />
             </Box>
             <Flex w='100%' direction={'column'} gap='10px'>
-                <Textarea  placeholder='what is happening' fontSize={'22px'} value={text} onChange={(e)=>setText(e.target.value)} />
+                <Textarea placeholder='what is happening' fontSize={'22px'} value={text} minH="80px" onChange={(e) => setText(e.target.value)}
+                      variant={'unstyled'}
+                    css={{
+                        '&::-webkit-scrollbar': {
+                            width: '4px',
+                        },
+                        '&::-webkit-scrollbar-track': {
+                            width: '6px',
+                        },
+                        '&::-webkit-scrollbar-thumb': {
+                            borderRadius: '24px',
+                        },
+                    }}
+                />
                 <Flex justifyContent={'space-between'} >
                     <Flex gap='30px'>
                         <Tooltip label="media" aria-label='A tooltip' placement='bottom' hasArrow>
                             <Box color="blue.400" >
-                            <Input type='file' id="image-media" accept='image/*' display={'none'} onChange={(e)=>setProfile(e.target.files[0])}/>                                
+                                <Input type='file' id="image-media" accept='image/*' display={'none'} onChange={(e) => setProfile(e.target.files[0])} />
                                 <label for="image-media"><MdPermMedia fontSize="22px" cursor={'pointer'} /></label>
                             </Box>
                         </Tooltip>
