@@ -17,7 +17,7 @@ const LCSF = () => {
             <Tooltip label="like" aria-label='A tooltip'>
                 <Flex cursor={'pointer'} alignItems={'center'} _hover={{ textColor: '#943126 ' }}>
                     <Box p="10px" _hover={{ backgroundColor: '#FADBD8' }} borderRadius={'50%'}>
-                        <BsHeart />
+                        <BsHeart values={{ color: 'blue' }} />
                     </Box>
                     <Text>34</Text>
                 </Flex>

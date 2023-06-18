@@ -13,11 +13,6 @@ const HomeTweet = () => {
     const token = JSON.parse(localStorage.getItem('twitteruser'))
 
     const setProfile=async(pics)=>{
-        if (pics === undefined) {
-          alert('field are required')
-          return;
-        }
-        // if (pics.type === "image/jpeg" || pics.type === "image/jpg" || pics.type === "image/png" || pics.type === "image/gif") {
           const data = new FormData();
           data.append("file", pics);
           data.append("upload_preset", "chat-app");
@@ -27,11 +22,6 @@ const HomeTweet = () => {
           }
           const value= await axios.post('https://api.cloudinary.com/v1_1/dr2fwpzbx/image/upload',data,config)
           setPic(value.data.url)
-           
-        // } else {
-        //   alert('image should be jpg/png formate')
-        //   return;
-        // }
     }
   
 const makePost = async() =>{
