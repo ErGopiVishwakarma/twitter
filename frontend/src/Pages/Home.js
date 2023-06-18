@@ -18,7 +18,7 @@ const Home = () => {
       }
      
       // setNewMessage('')
-      const {data} = await axios.get(`http://localhost:8080/post/getpost`,config)
+      const {data} = await axios.get(`http://localhost:8080/post/getallpost`,config)
       console.log(data)
       setPost(data)
       

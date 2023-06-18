@@ -55,7 +55,7 @@ const makePost = async() =>{
     return (
         <Flex w='100%' pt="70px" pb="20px" gap="20px">
             <Box>
-                <Avatar h="40px" w='40px' />
+                <Avatar src={token.user?.pic} h="40px" w='40px' />
             </Box>
             <Flex w='100%' direction={'column'} gap='10px'>
                 <Textarea  placeholder='what is happening' fontSize={'22px'} value={text} onChange={(e)=>setText(e.target.value)} />
