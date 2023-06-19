@@ -6,7 +6,7 @@ const userSchema = mongoose.Schema({
     pic:{type:String,default:''}
 },{
     timestamps:true,
-    __v:false
+    __v:false 
 })
 
 const UserModel = mongoose.model('User',userSchema)

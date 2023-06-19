@@ -9,14 +9,14 @@ import RightSidebar from './RightSidebar'
 const MainPage = () => {
 
   return (
-    <Flex w='100%' px='60px'>
+    <Flex w='100%' px='50px'>
       <Box w={{basea:'',md:'auto',lg:'24%'}}>
         <Navbar />
       </Box>
       <Box w={{base:'100%',md:'77%',lg:'48%'}} position={'relative'}>
         <MainRoute />
       </Box>
-      <Box w="28%" display={{ base: 'none', md: 'none', lg: 'block' }} position={'relative'}>
+      <Box w="30%" display={{ base: 'none', md: 'none', lg: 'block' }} position={'relative'}>
         <RightSidebar />
       </Box>
     </Flex>

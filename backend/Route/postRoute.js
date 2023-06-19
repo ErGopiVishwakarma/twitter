@@ -38,7 +38,7 @@ postRouter.get('/getpost', async (req, res) => {
 
 postRouter.get('/getallpost', async (req, res) => {
     try {
-        const post = await PostModel.find().populate('postedBy')
+        const post = await PostModel.find().populate('postedBy').populate('comments.postedBy')
         res.send(post)
     } catch (error) {
         res.status(402).send({ err: error.message })
