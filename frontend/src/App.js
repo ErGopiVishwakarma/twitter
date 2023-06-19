@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import axios from 'axios'
 import MainPage from "./Pages/MainPage";
 import Login from "./auth/Login";
+import './Style/app.css'
 
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
 	const twitteruser = localStorage.getItem('twitteruser') || ""
   
   return (
-      <Box>
+      <Box className="app">
 		{
 			twitteruser?<MainPage />:<Login />
 		}

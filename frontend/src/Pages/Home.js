@@ -5,7 +5,7 @@ import HomeTweet from '../Component/homeComponent/HomeTweet'
 import axios from 'axios'
 
 const Home = () => {
-
+  const [change, setChange] = useState(false)
   const [post, setPost] = useState([])
   const token = JSON.parse(localStorage.getItem('twitteruser'))
   const getPost = async() =>{
@@ -28,7 +28,7 @@ const Home = () => {
 
   useEffect(()=>{
     getPost()
-  },[])
+  },[change])
 
 
   return ( 

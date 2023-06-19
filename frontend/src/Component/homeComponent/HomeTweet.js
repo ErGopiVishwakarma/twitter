@@ -1,5 +1,5 @@
 import { Avatar, Box, Button, Flex, Input, Textarea, Tooltip, useToast } from '@chakra-ui/react'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { MdPermMedia } from 'react-icons/md'
 import { AiOutlineFileGif } from 'react-icons/ai'
 import { BiPoll } from 'react-icons/bi'
@@ -10,6 +10,8 @@ const HomeTweet = () => {
     const [text, setText] = useState("")
     let [pic, setPic] = useState("")
     const toast = useToast()
+    const [loading, setLoading] = useState(true)
+    const [imageSelect, setImageSelect] = useState(false)
     const token = JSON.parse(localStorage.getItem('twitteruser'))
 
     const setProfile = async (pics) => {
@@ -20,8 +22,11 @@ const HomeTweet = () => {
         const config = {
             mode: 'no-cors',
         }
+        setImageSelect(true)
         const value = await axios.post('https://api.cloudinary.com/v1_1/dr2fwpzbx/image/upload', data, config)
         setPic(value.data.url)
+        setImageSelect(false)
+        console.log(value.data.url)
     }
 
     const makePost = async () => {
@@ -51,7 +56,23 @@ const HomeTweet = () => {
             alert('ohh something went wrong')
         }
     }
+    useEffect(() => {
+        if (imageSelect) {
+            setLoading(true)
+        } else {
+            setLoading(false)
+        }
+    }, [imageSelect])
+    
+    useEffect(() => {
+        if (text) {
+            setLoading(false)
+        } else {
+            setLoading(true)
+        }
+    }, [text])
 
+    console.log(pic)
     return (
         <Flex w='100%' pt="70px" pb="20px" gap="20px">
             <Box>
@@ -59,7 +80,7 @@ const HomeTweet = () => {
             </Box>
             <Flex w='100%' direction={'column'} gap='10px'>
                 <Textarea placeholder='what is happening' fontSize={'22px'} value={text} minH="80px" onChange={(e) => setText(e.target.value)}
-                      variant={'unstyled'}
+                    variant={'unstyled'}
                     css={{
                         '&::-webkit-scrollbar': {
                             width: '4px',
@@ -96,7 +117,7 @@ const HomeTweet = () => {
                             </Box>
                         </Tooltip>
                     </Flex>
-                    <Button bg={'blue.400'} colorScheme={'white'} borderRadius={'50px'} onClick={makePost} >
+                    <Button bg={'blue.400'} colorScheme={'white'} borderRadius={'50px'} onClick={makePost} isDisabled={loading} >
                         tweet
                     </Button>
 
