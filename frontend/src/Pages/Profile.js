@@ -5,13 +5,17 @@ import HomeTweet from '../Component/homeComponent/HomeTweet'
 import axios from 'axios'
 import RightSidebar from './RightSidebar'
 import { BiSearch } from 'react-icons/bi'
+import { useParams } from 'react-router-dom'
 
 const Profile = () => {
   const followArr = new Array(3).fill(0)
   const trendingArr = new Array(6).fill(0)
   const token = JSON.parse(localStorage.getItem('twitteruser'))
   const [post, setPost] = useState([])
-  const getPost = async () => {
+  const {userId} = useParams()
+  const [profile,setProfile] = useState({})
+ console.log('userId'+userId)
+  const userProfile = async() =>{
     try {
       const config = {
         headers: {
@@ -19,20 +23,19 @@ const Profile = () => {
           Authorization: `Bearer ${token.token}`
         }
       }
-
-      // setNewMessage('')
-      const { data } = await axios.get(`http://localhost:8080/post/getpost`, config)
+      const {data} = await axios.get(`http://localhost:8080/user/profile/${userId}`, config)
       console.log(data)
-      setPost(data)
+      setPost(data.posts)
+      setProfile(data.user[0])
 
     } catch (error) {
       console.log(error.message)
       alert('ohh something went wrong')
     }
   }
-
+ console.log(post,profile)
   useEffect(() => {
-    getPost()
+    userProfile()
   }, [])
 
 
@@ -55,13 +58,13 @@ const Profile = () => {
           <Heading fontSize={'22px'}>Profile</Heading>
         </Box>
         <Box h="250px" w='100%' bg="gray.300" pt='60px' position={'relative'}>
-          <Avatar src={token.user?.pic} h='120px' w='120px' position={'absolute'} bottom={'-60px'} left="30px" />
+          <Avatar src={profile?.pic} h='120px' w='120px' position={'absolute'} bottom={'-60px'} left="30px" />
         </Box>
         <Flex justifyContent={'flex-end'} pt="15px">
           <Button borderRadius={'50px'} border={'1px solid black'} px="25px" py='10px'>Edit Profile</Button>
         </Flex>
         <Flex direction={'column'} pt="30px" gap="10px">
-          <Heading fontSize={'18px'}>{token.user.name}</Heading>
+          <Heading fontSize={'18px'}>{profile?.name}</Heading>
           <Text>joinded june 2023</Text>
           <Flex gap="30px">
             <Button variant={'unstyled'}>5  Followers</Button>

@@ -24,19 +24,23 @@ const Post = ({ el }) => {
     return (
         <Flex gap="20px" w="100%">
             <Box>
-                <Avatar src={el.postedBy.pic} h={{ base: '30px', sm: '40px', md: "40px" }} w={{ base: '30px', sm: '40px', md: "40px" }} />
+                <NavLink to={`profile/${el.postedBy._id}`}>
+                    <Avatar src={el.postedBy.pic} h={{ base: '30px', sm: '40px', md: "40px" }} w={{ base: '30px', sm: '40px', md: "40px" }} />
+                </NavLink>
             </Box>
             <Flex w='100%' direction={'column'} alignItems={'flex-start'} gap="8px">
                 <Flex justifyContent={'space-between'} w="100%" >
-                    <Heading fontSize="18px">{el.postedBy.name}</Heading>
+                    <NavLink to={`profile/${el.postedBy._id}`}>
+                        <Heading fontSize="18px">{el.postedBy.name}</Heading>
+                    </NavLink>
                     {/* delete functionality here  */}
                     <Menu>
                         <MenuButton>
                             <Heading fontSize={'20px'}>...</Heading>
                         </MenuButton>
                         <MenuList>
-                            <MenuItem color='red' display={el.postedBy._id === token.user._id? "block": 'none'}>
-                                <DeleteModal postId={el._id} />                                      
+                            <MenuItem color='red' display={el.postedBy._id === token.user._id ? "block" : 'none'}>
+                                <DeleteModal postId={el._id} />
                             </MenuItem>
                             <MenuItem>
                                 <Flex gap='10px' alignItems={'center'}>

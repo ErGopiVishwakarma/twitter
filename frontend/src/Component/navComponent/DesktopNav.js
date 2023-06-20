@@ -38,6 +38,7 @@ const LinkItems = [
 ];
 
 export default function DesktopNav() {
+    const token = JSON.parse(localStorage.getItem('twitteruser'))
     return (
         <Box maxH="100vh" overflowY={'auto'} w='100%' pb='20px'
             css={{
@@ -60,7 +61,7 @@ export default function DesktopNav() {
                     </Box>
                 </Flex>
                 {LinkItems.map((link) => (
-                    <NavItem key={link.name} icon={link.icon} link={link.link}>
+                    <NavItem key={link.name} icon={link.icon} link={link.link === '/profile' ?`${link.link}/${token.user._id}`:`${link.link}`}>
                         {link.name}
                     </NavItem>
                 ))}

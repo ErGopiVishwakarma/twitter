@@ -23,7 +23,7 @@ const MainRoute = () => {
       <Route path='/list' element={<List />} />
       <Route path="/bookmark" element={<Bookmark />} />
       <Route path='/verified' element={<Verified />} />
-      <Route path="/profile" element={<Profile />} />
+      <Route path="/profile/:userId" element={<Profile />} />
       <Route path="/more" element={<More />} />
       <Route path="post/:id" element={<PostDetail />} />
     </Routes>

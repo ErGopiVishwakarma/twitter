@@ -3,6 +3,7 @@ const express = require('express')
 const UserModel = require('../model/userModel')
 const jwt = require('jsonwebtoken')
 const authenticate = require('../middleware/authentication')
+const PostModel = require('../model/postModel')
 
 const userRouter = express.Router()
 
@@ -48,6 +49,20 @@ userRouter.get('/allusers',authenticate, async (req, res) => {
 
     const user = await UserModel.find(searchData).find({ _id: { $ne: req.user.id }})
     res.send(user)
+})
+
+ 
+// logic for looking the profile of other users 
+userRouter.get('/profile/:userId',authenticate,(req,res)=>{
+    UserModel.find({_id:req.params.userId}).then(user=>{
+         PostModel.find({postedBy:req.params.userId}).populate("postedBy").then(posts=>{
+            res.status(200).send({user,posts})
+         }).catch(err=>{
+            res.send({err:err.message})
+         })
+    }).catch(err=>{
+        res.status(400).send({err:err.message})
+    })
 })
 
 
