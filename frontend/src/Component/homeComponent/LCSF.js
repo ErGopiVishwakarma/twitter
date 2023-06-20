@@ -8,9 +8,9 @@ import CommentModal from '../CommentModal'
 
 const LCSF = ({ postId,user }) => {
     const token = JSON.parse(localStorage.getItem('twitteruser'))
-    const [like, setLike] = useState(0)
+    const [like, setLike] = useState()
     const [likeColor, setLikeColor] = useState()
-    const [comment, setComment] = useState(0)
+    const [comment, setComment] = useState()
     const likeFun = async () => {
         try {
             const config = {
@@ -95,7 +95,7 @@ const LCSF = ({ postId,user }) => {
             <Tooltip label="retweet" aria-label='A tooltip' hasArrow>
                 <Flex cursor={'pointer'} alignItems={'center'} _hover={{ textColor: '#2874A6' }}>
                     <Box p="10px" _hover={{ backgroundColor: '#AED6F1' }} borderRadius={'50%'}><FaRetweet fontSize={{base:'16px',sm:'17px',md:'20px',lg:'20px'}} /></Box>
-                    <Text>0</Text>
+                    <Text></Text>
                 </Flex>
             </Tooltip>
 
@@ -103,7 +103,7 @@ const LCSF = ({ postId,user }) => {
             <Tooltip label="views" aria-label='A tooltip' hasArrow>
                 <Flex cursor={'pointer'} alignItems={'center'} _hover={{ textColor: 'green' }} display={{base:'none',md:"flex"}}>
                     <Box p="10px" _hover={{ backgroundColor: '#AED6F1' }} borderRadius={'50%'}><FaStreetView p="10px" fontSize={{base:'16px',sm:'17px',md:'20px',lg:'20px'}} /></Box>
-                    <Text>0</Text>
+                    <Text></Text>
                 </Flex>
             </Tooltip>
 

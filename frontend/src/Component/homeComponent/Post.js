@@ -17,9 +17,9 @@ const Post = ({ el }) => {
                     <Heading fontSize="18px" cursor={'pointer'} >...</Heading>
                 </Flex>
                 <NavLink to={`post/${el._id}`}>
-                    <Text>
-                        {el.content}
-                    </Text>
+                    <pre>
+                        <Text wordBreak={'break-all'}>{el.content}</Text>
+                    </pre>
                 </NavLink>
                 <Box borderRadius={{base:"15px",md:'25px'}} w="100%">
                     <Image src={el.picture} borderRadius={{base:"15px",md:'25px'}} />

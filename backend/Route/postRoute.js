@@ -10,7 +10,6 @@ postRouter.get('/', (req, res) => {
     res.send('this is user post page')
 })
 
-
 postRouter.post('/createpost', async (req, res) => {
     const { content, picture } = req.body
     console.log(req.user)
@@ -94,32 +93,48 @@ postRouter.post('/likerender', async (req, res) => {
 })
 
 postRouter.put('/comment', async (req, res) => {
-     const comment = {
-        text:req.body.text,
-        postedBy:req.user._id
-     }
-        PostModel.findByIdAndUpdate(req.body.postId, {
-            $push: { comments: comment}
-        }, {
-            new: true   
-        }).populate("comments.postedBy").then(result => {
-            console.log(result)
-                return res.status(200).send(result)
-            }).catch(err => {
-                return res.status(400).send({ msg: err.message })
-                console.log(err.message)
-            })
+    const comment = {
+        text: req.body.text,
+        postedBy: req.user._id
+    }
+    PostModel.findByIdAndUpdate(req.body.postId, {
+        $push: { comments: comment }
+    }, {
+        new: true
+    }).populate("comments.postedBy").then(result => {
+        console.log(result)
+        return res.status(200).send(result)
+    }).catch(err => {
+        console.log(err.message)
+        return res.status(400).send({ msg: err.message })
+
+    })
 })
 
 postRouter.get('/commentrender', async (req, res) => {
-   
-       PostModel.findById(req.body.postId).populate("comments.postedBy").then(result => {
-               return res.status(200).send(result)
-           }).catch(err => {
-               return res.status(400).send({ msg: err.message })
-           })
+
+    PostModel.findById(req.body.postId).populate("comments.postedBy").then(result => {
+        return res.status(200).send(result)
+    }).catch(err => {
+        return res.status(400).send({ msg: err.message })
+    })
 })
 
+postRouter.delete('/deletepost/:postId',(req,res)=>{
+    PostModel.findOne({_id:req.params.postId}).populate("postedBy","_id").then(result=>{
+        if(result.postedBy._id.toString() === req.user._id.toString()){
+            PostModel.findByIdAndDelete(req.params.postId).then(ans=>{
+                res.status(200).send(ans)
+            }).catch(err=>{
+                res.status(400).send("something went wrong")
+            })
+        }else{
+            res.status(400).send('you can not delete this post')
+        }
+     }).catch(err=>{
+        res.status(400).send(err.message)
+    })
+})
 
 
 
