@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { FaRegComment, FaRetweet, FaStreetView, FaShare } from 'react-icons/fa'
-import { BsHeart, BsFillHeartFill, BsHeartFill } from 'react-icons/bs'
+import { BsHeart, BsFillHeartFill, BsHeartFill,BsShare } from 'react-icons/bs'
 import { Box, Flex, Text, Tooltip } from '@chakra-ui/react'
 import axios from 'axios'
 import { VscHeart } from 'react-icons/vsc'
@@ -69,22 +69,22 @@ const LCSF = ({ postId,user }) => {
 
 
     return (
-        <Flex gap='50px'>
-            <Tooltip label="reply" aria-label='A tooltip'>
+        <Flex  justifyContent={{base:'space-between'}} w='100%'>
+            <Tooltip label="reply" aria-label='A tooltip' hasArrow>
                 <Flex cursor={'pointer'} alignItems={'center'} _hover={{ textColor: '#17A589' }} >
                     <CommentModal user={user} postId={postId} setComment={setComment}>
-                    <Box p="10px" _hover={{ backgroundColor: '#D5F5E3' }} borderRadius={'50%'}><FaRegComment fontSize={"20px"} /></Box>
+                    <Box p="10px" _hover={{ backgroundColor: '#D5F5E3' }} borderRadius={'50%'}><FaRegComment fontSize={{base:'16px',sm:'17px',md:'20px',lg:'20px'}} /></Box>
                     </CommentModal>
                     <Text>{comment}</Text>
                 </Flex>
             </Tooltip>
 
 
-            <Tooltip label="like" aria-label='A tooltip'>
+            <Tooltip label="like" aria-label='A tooltip' hasArrow>
                 <Flex cursor={'pointer'} alignItems={'center'} _hover={{ textColor: '#943126 ' }}>
                     <Box p="10px" borderRadius={'50%'} onClick={likeFun} _hover={{ backgroundColor: 'red.100' }}>
                         {
-                            likeColor ? <BsHeartFill color='red' fontSize={"20px"} /> : <BsHeart fontSize={"20px"} />
+                            likeColor ? <BsHeartFill color='red' fontSize={{base:'16px',sm:'17px',md:'20px',lg:'20px'}}/> : <BsHeart fontSize={{base:'16px',sm:'17px',md:'20px',lg:'20px'}} />
                         }
                     </Box>
                     <Text>{like}</Text>
@@ -92,25 +92,25 @@ const LCSF = ({ postId,user }) => {
             </Tooltip>
 
 
-            <Tooltip label="retweet" aria-label='A tooltip'>
+            <Tooltip label="retweet" aria-label='A tooltip' hasArrow>
                 <Flex cursor={'pointer'} alignItems={'center'} _hover={{ textColor: '#2874A6' }}>
-                    <Box p="10px" _hover={{ backgroundColor: '#AED6F1' }} borderRadius={'50%'}><FaRetweet fontSize={"20px"} /></Box>
-                    <Text>34</Text>
+                    <Box p="10px" _hover={{ backgroundColor: '#AED6F1' }} borderRadius={'50%'}><FaRetweet fontSize={{base:'16px',sm:'17px',md:'20px',lg:'20px'}} /></Box>
+                    <Text>0</Text>
                 </Flex>
             </Tooltip>
 
 
-            <Tooltip label="views" aria-label='A tooltip'>
-                <Flex cursor={'pointer'} alignItems={'center'} _hover={{ textColor: 'green' }}>
-                    <Box p="10px" _hover={{ backgroundColor: '#AED6F1' }} borderRadius={'50%'}><FaStreetView p="10px" fontSize={"20px"} /></Box>
-                    <Text>34</Text>
+            <Tooltip label="views" aria-label='A tooltip' hasArrow>
+                <Flex cursor={'pointer'} alignItems={'center'} _hover={{ textColor: 'green' }} display={{base:'none',md:"flex"}}>
+                    <Box p="10px" _hover={{ backgroundColor: '#AED6F1' }} borderRadius={'50%'}><FaStreetView p="10px" fontSize={{base:'16px',sm:'17px',md:'20px',lg:'20px'}} /></Box>
+                    <Text>0</Text>
                 </Flex>
             </Tooltip>
 
 
-            <Tooltip label="share" aria-label='A tooltip'>
+            <Tooltip label="share" aria-label='A tooltip' hasArrow>
                 <Flex cursor={'pointer'} alignItems={'center'} _hover={{ textColor: '#17A589' }}>
-                    <FaShare fontSize={"20px"} />
+                    <BsShare fontSize={{base:'16px',sm:'17px',md:'20px',lg:'20px'}} />
                 </Flex>
             </Tooltip>
         </Flex>

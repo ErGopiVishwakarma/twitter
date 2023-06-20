@@ -9,7 +9,7 @@ const Post = ({ el }) => {
     return (
         <Flex gap="20px" w="100%">
             <Box>
-                <Avatar src={el.postedBy.pic} h="40px" w='40px' />
+                <Avatar src={el.postedBy.pic} h={{base:'30px',sm:'40px',md:"40px"}} w={{base:'30px',sm:'40px',md:"40px"}} />
             </Box>
             <Flex w='100%' direction={'column'} alignItems={'flex-start'} gap="8px">
                 <Flex justifyContent={'space-between'} w="100%" >
@@ -21,8 +21,8 @@ const Post = ({ el }) => {
                         {el.content}
                     </Text>
                 </NavLink>
-                <Box borderRadius={'25px'} w="100%">
-                    <Image src={el.picture} borderRadius={'25px'} />
+                <Box borderRadius={{base:"15px",md:'25px'}} w="100%">
+                    <Image src={el.picture} borderRadius={{base:"15px",md:'25px'}} />
                 </Box>
                 <LCSF postId={el._id} user={el} />
             </Flex>

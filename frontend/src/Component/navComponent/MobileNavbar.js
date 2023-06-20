@@ -14,14 +14,14 @@ import React from 'react'
 
 
 
-export default function MobileNavbar() {
+export default function MobileNavbar({children}) {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const btnRef = React.useRef()
   
     return (
       <>
-        <Button ref={btnRef} colorScheme='teal' onClick={onOpen}>
-          Open
+        <Button variant={'unstyled'} ref={btnRef} colorScheme='teal' onClick={onOpen}>
+            {children}
         </Button>
         <Drawer
           isOpen={isOpen}

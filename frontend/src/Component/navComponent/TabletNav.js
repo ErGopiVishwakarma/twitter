@@ -38,7 +38,7 @@ const LinkItems = [
 
 export default function TabletNav() {
     return (
-        <Flex alignItems={'center'} justifyContent={'center'} maxH="100vh" overflowY={'scroll'} w='100%' px="50px" position={'relative'}>
+        <Flex alignItems={'center'} justifyContent={'center'} maxH="100vh" overflowY={'scroll'} w='100%'  position={'relative'}>
             <Flex direction={'column'} overflow={'srcoll'} w='100%' gap="20px">
                 <Flex alignItems="center"  justifyContent="space-between" >
                     <Box p='11px' _hover={{ bg: 'pink' }} borderRadius={'50%'}>

@@ -1,11 +1,13 @@
 import { Box, Flex, Heading, Stack, Text, VStack } from '@chakra-ui/react'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Post from '../Component/homeComponent/Post'
 import HomeTweet from '../Component/homeComponent/HomeTweet'
 import axios from 'axios'
+import { ContextProvider } from '../Route/ContextApi'
+import RightSidebar from './RightSidebar'
 
 const Home = () => {
-  const [change, setChange] = useState(false)
+ const {homeUpdate} = useContext(ContextProvider)
   const [post, setPost] = useState([])
   const token = JSON.parse(localStorage.getItem('twitteruser'))
   const getPost = async() =>{
@@ -28,11 +30,13 @@ const Home = () => {
 
   useEffect(()=>{
     getPost()
-  },[change])
+  },[homeUpdate])
 
 
   return ( 
-    <Box w="100%" px="20px" overflowY={'auto'} h="100vh"   position={'relative'} 
+  <Flex>
+      <Box  px="20px" overflowY={'auto'} h="100vh"   position={'relative'} 
+      w='60%'
     css={{
     '&::-webkit-scrollbar': {
       width: '4px',
@@ -45,7 +49,7 @@ const Home = () => {
     },
   }}
     >
-    <Box w="100%" h="60px" position={'fixed'} zIndex={1}  bg="white" >
+    <Box w="100%" h="60px" position={'fixed'} zIndex={1}  bg="white" display={{base:'none',sm:'none',md:'block'}} >
       <Heading fontSize={'22px'}>Home</Heading>
     </Box>
     <HomeTweet />
@@ -57,6 +61,10 @@ const Home = () => {
       }
      </VStack>
     </Box>
+    <Box w='40%'>
+    <RightSidebar />
+    </Box>
+  </Flex>
   )
 }
 

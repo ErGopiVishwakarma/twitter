@@ -8,6 +8,7 @@ import {
     Link,
     Text,
     Button,
+    Heading,
 } from '@chakra-ui/react';
 import {
     FiHome,
@@ -25,37 +26,37 @@ import { NavLink } from 'react-router-dom';
 import TweetModal from '../TweetModal';
 
 const LinkItems = [
-    { name: 'Home', icon: FiHome,link:'/' },
-    { name: 'Explore', icon: FiSearch,link:'/explore' },
-    { name: 'Notifications', icon: FiBell,link:'/notification' },
-    { name: 'Messages', icon: FiMessageSquare,link:'/message' },
-    { name: 'Lists', icon: FiList ,link:'/list'},
-    { name: 'Bookmarks', icon: FiBookmark ,link:'/bookmark'},
-    { name: 'Veirfied', icon: FiCheck ,link:'/verified'},
-    { name: 'Profile', icon: FiUser,link:'/profile' },
-    { name: 'More', icon: FiMenu ,link:'/more'},
+    { name: 'Home', icon: FiHome, link: '/' },
+    { name: 'Explore', icon: FiSearch, link: '/explore' },
+    { name: 'Notifications', icon: FiBell, link: '/notification' },
+    { name: 'Messages', icon: FiMessageSquare, link: '/message' },
+    { name: 'Lists', icon: FiList, link: '/list' },
+    { name: 'Bookmarks', icon: FiBookmark, link: '/bookmark' },
+    { name: 'Veirfied', icon: FiCheck, link: '/verified' },
+    { name: 'Profile', icon: FiUser, link: '/profile' },
+    { name: 'More', icon: FiMenu, link: '/more' },
 ];
 
 export default function DesktopNav() {
     return (
-        <Box maxH="100vh" overflowY={'auto'} w='100%' 
-          css={{
-    '&::-webkit-scrollbar': {
-      width: '4px',
-    },
-    '&::-webkit-scrollbar-track': {
-      width: '6px',
-    },
-    '&::-webkit-scrollbar-thumb': {
-     background:'gray',
-      borderRadius: '24px',
-    },
-  }}
+        <Box maxH="100vh" overflowY={'auto'} w='100%' pb='20px'
+            css={{
+                '&::-webkit-scrollbar': {
+                    width: '4px',
+                },
+                '&::-webkit-scrollbar-track': {
+                    width: '6px',
+                },
+                '&::-webkit-scrollbar-thumb': {
+                    background: 'gray',
+                    borderRadius: '24px',
+                },
+            }}
         >
-            <Flex direction={'column'} overflow={'srcoll'} w='100%' pr='100px'>
+            <Flex direction={'column'} overflow={'srcoll'} w='100%' pr='50px'>
                 <Flex alignItems="center" justifyContent="space-between" >
-                    <Box py='11px' _hover={{bg:'pink'}} borderRadius={'50%'}>
-                    <VscTwitter color='#1D9BF0' fontSize={'35px'}/>
+                    <Box p='11px' cursor={'pointer'} _hover={{ bg: 'gray.200' }} borderRadius={'50%'}>
+                        <VscTwitter color='#1D9BF0' fontSize={'35px'} />
                     </Box>
                 </Flex>
                 {LinkItems.map((link) => (
@@ -65,18 +66,18 @@ export default function DesktopNav() {
                 ))}
 
                 {/* extra added code for identification  */}
-                    <TweetModal />
-                <Flex  justifyContent={'space-between'} alignItems={'center'}>
-                    <Box>
+                <TweetModal />
+                <Flex justifyContent={'space-between'} alignItems={'center'} p="10px" _hover={{ backgroundColor: 'gray.200' }} borderRadius={'50px'} cursor={'pointer'}>
+                    <Flex gap='10px'>
                         <Avatar w='35px' h='35px' src="" name='gopi vish' />
-                    </Box>
-                    <Flex direction={'column'}>
-                        <Text fontSize={'14px'}>
-                            @gopi12345
-                        </Text>
-                        <Text fontSize={'14px'}>gopi@gmail.com</Text>
+                        <Flex direction={'column'}>
+                            <Heading fontSize={'15px'}>
+                                Gopi
+                            </Heading>
+                            <Text fontSize={'15px'}>@gopi12345</Text>
+                        </Flex>
                     </Flex>
-                    <Link href='http://localhost:8080/auth/logout'><Text>...</Text></Link>
+                    <Link><Heading fontSize={'18px'}>...</Heading></Link>
                 </Flex>
                 {/* till here ..... */}
             </Flex>
@@ -85,15 +86,15 @@ export default function DesktopNav() {
 }
 
 
-const NavItem = ({ icon, children, link}) => {
+const NavItem = ({ icon, children, link }) => {
     return (
         <NavLink to={link} style={{ textDecoration: 'none' }} >
             <Flex
-            fontSize={'20px'}
+                borderRadius={'50px'}
+                _hover={{ backgroundColor: 'gray.200' }}
+                fontSize={'20px'}
                 align="center"
-              
-                py='3'
-                
+                p='11px'
                 role="group"
                 cursor="pointer">
                 {icon && (
@@ -102,6 +103,7 @@ const NavItem = ({ icon, children, link}) => {
                         fontSize="20"
                         as={icon}
                         color={'blackAlpha.900'}
+                        fontWeight={'bolder'}
                     />
                 )}
                 {children}
