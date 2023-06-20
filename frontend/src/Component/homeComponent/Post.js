@@ -14,12 +14,13 @@ import LCSF from './LCSF'
 import { NavLink } from 'react-router-dom'
 import { AiOutlineDelete } from 'react-icons/ai'
 import { BiUserPlus } from 'react-icons/bi'
-import {RiFlag2Line} from 'react-icons/ri'
+import { RiFlag2Line } from 'react-icons/ri'
 import { BsCodeSlash } from 'react-icons/bs'
+import DeleteModal from '../DeleteModal'
 
 
 const Post = ({ el }) => {
-
+    const token = JSON.parse(localStorage.getItem('twitteruser'))
     return (
         <Flex gap="20px" w="100%">
             <Box>
@@ -34,15 +35,12 @@ const Post = ({ el }) => {
                             <Heading fontSize={'20px'}>...</Heading>
                         </MenuButton>
                         <MenuList>
-                            <MenuItem color='red'>
-                                <Flex gap='10px' alignItems={'center'}>
-                                    <AiOutlineDelete fontSize={'22px'} />
-                                    <Text >Delete</Text>
-                                </Flex>
+                            <MenuItem color='red' display={el.postedBy._id === token.user._id? "block": 'none'}>
+                                <DeleteModal postId={el._id} />                                      
                             </MenuItem>
                             <MenuItem>
                                 <Flex gap='10px' alignItems={'center'}>
-                                    <BiUserPlus  fontSize={'22px'} />
+                                    <BiUserPlus fontSize={'22px'} />
                                     <Text>Follow</Text>
                                 </Flex>
                             </MenuItem>
@@ -54,7 +52,7 @@ const Post = ({ el }) => {
                             </MenuItem>
                             <MenuItem>
                                 <Flex gap='10px' alignItems={'center'}>
-                                    <RiFlag2Line  fontSize={'22px'} />
+                                    <RiFlag2Line fontSize={'22px'} />
                                     <Text>Report</Text>
                                 </Flex>
                             </MenuItem>
