@@ -24,9 +24,11 @@ const MainRoute = () => {
       <Route path="/message" element={<Message />} />
       <Route path='/list' element={<List />} />
       <Route path="/bookmark" element={<Bookmark />} />
-      <Route path='/verified' element={<Verified />} />
+      {/* <Route path='/verified' element={<Verified />} /> */}
       <Route path="/profile/:userId" element={<Profile />} />
-      <Route path="/more" element={<More />} />
+      <Route path="/explore/profile/:userId" element={<Profile />} />
+      <Route path="/notification/profile/:userId" element={<Profile />} />
+      {/* <Route path="/more" element={<More />} /> */}
       <Route path="post/:id" element={<PostDetail />} />
     </Routes>
   )

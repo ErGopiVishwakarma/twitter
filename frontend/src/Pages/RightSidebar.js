@@ -73,17 +73,17 @@ const RightSidebar = () => {
             </Flex>
             {/* what is happenning secttion her  */}
             <Flex direction={'column'} justifyContent={'flex-start'} bg='gray.100'>
-                <Heading fontSize='25px' color='#0F1419 ' fontFamily={'revert'} p='15px'>What is happening</Heading>
+                <Heading fontSize='22px' color='#0F1419 ' fontFamily={'revert'} p='15px'>What is happening</Heading>
                 <Flex direction={'column'} >
                     {
                         trendingArr.map((el,ind) => (
                             <Flex direction={'column'} _hover={{ backgroundColor: 'gray.200' }} px='15px' py='10px' w='100%' key={ind}  >
                                 <Flex justifyContent={'space-between'} w='100%' >
-                                    <Text color="gray.600" fontSize={'14px'}>This is text</Text>
+                                    <Text color="gray.600" fontSize={'13px'}>This is text</Text>
                                     <Heading fontSize='20px' cursor={'pointer'}>...</Heading>
                                 </Flex>
-                                <Heading fontSize={'16px'}>#Gopi vishwakarma</Heading>
-                                <Text color="gray.600" fontSize={'14px'}>25.5k tweets</Text>
+                                <Heading fontSize={'15px'}>#Gopi vishwakarma</Heading>
+                                <Text color="gray.600" fontSize={'13px'}>25.5k tweets</Text>
                             </Flex>
                         ))
                     }
@@ -94,15 +94,15 @@ const RightSidebar = () => {
             {/* who to follow section here  */}
 
             <Flex direction={'column'} p='15px' gap='20px' bg='gray.100'>
-                <Heading fontSize={'25px'}>Who to follow</Heading>
+                <Heading fontSize={'22px'}>Who to follow</Heading>
                 {
                     followArr.map((el,ind) => (
                         <Flex justifyContent={'space-between'} key={ind}>
                             <Flex gap='10px'>
                                 <Avatar />
                                 <Flex direction={'column'}>
-                                    <Heading fontSize="17px">gopi hii</Heading>
-                                    <Text>@gopi hii</Text>
+                                    <Heading fontSize="16px">gopi hii</Heading>
+                                    <Text fontSize={'14px'}>@gopi hii</Text>
                                 </Flex>
                             </Flex>
                             <Button bg="black" colorScheme='white' borderRadius={'50px'}>Follow</Button>

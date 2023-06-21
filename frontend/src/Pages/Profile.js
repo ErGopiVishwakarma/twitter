@@ -12,10 +12,10 @@ const Profile = () => {
   const trendingArr = new Array(6).fill(0)
   const token = JSON.parse(localStorage.getItem('twitteruser'))
   const [post, setPost] = useState([])
-  const {userId} = useParams()
-  const [profile,setProfile] = useState({})
- console.log('userId'+userId)
-  const userProfile = async() =>{
+  const { userId } = useParams()
+  const [profile, setProfile] = useState({})
+  console.log('userId' + userId)
+  const userProfile = async () => {
     try {
       const config = {
         headers: {
@@ -23,7 +23,7 @@ const Profile = () => {
           Authorization: `Bearer ${token.token}`
         }
       }
-      const {data} = await axios.get(`http://localhost:8080/user/profile/${userId}`, config)
+      const { data } = await axios.get(`http://localhost:8080/user/profile/${userId}`, config)
       console.log(data)
       setPost(data.posts)
       setProfile(data.user[0])
@@ -33,7 +33,7 @@ const Profile = () => {
       alert('ohh something went wrong')
     }
   }
- console.log(post,profile)
+  console.log(post, profile)
   useEffect(() => {
     userProfile()
   }, [])
@@ -41,7 +41,7 @@ const Profile = () => {
 
   return (
     <Flex w='100%'>
-      <Box w={{base:'100%',sm:'100%',md:'60%',lg:'60%'}} px="20px" overflowY={'auto'} h="100vh" position={'relative'}
+      <Box w={{ base: '100%', sm: '100%', md: '60%', lg: '60%' }} px="20px" overflowY={'auto'} h="100vh" position={'relative'}
         css={{
           '&::-webkit-scrollbar': {
             width: '4px',
@@ -80,7 +80,7 @@ const Profile = () => {
         </VStack>
       </Box>
 
-      <Box w='40%' display={{base:'none',sm:'none',md:'block',lg:'block'}}>
+      <Box w='40%' display={{ base: 'none', sm: 'none', md: 'block', lg: 'block' }}>
         <Flex w='100%' position={'relative'} zIndex={2} direction={'column'} ml='15px' gap='20px' h='100vh' overflowY={'scroll'}
           fontFamily={'regulare.400'}
           css={{
@@ -103,46 +103,45 @@ const Profile = () => {
             <Input type='text' placeholder='search' borderRadius={'50px'} fontSize={'18px'} variant={'filled'} bg='gray.300' />
           </InputGroup>
 
-              {/* who to follow section here  */}
-              <Flex direction={'column'} p='15px' gap='20px' bg='gray.100'>
-            <Heading fontSize={'25px'}>Who to follow</Heading>
+          {/* who to follow section here  */}
+          <Flex direction={'column'} p='15px' gap='20px' bg='gray.100'>
+            <Heading fontSize={'22px'}>Who to follow</Heading>
             {
-              followArr.map(el => (
-                <Flex justifyContent={'space-between'}>
+              followArr.map((el, ind) => (
+                <Flex justifyContent={'space-between'} key={ind}>
                   <Flex gap='10px'>
                     <Avatar />
                     <Flex direction={'column'}>
-                      <Heading fontSize="17px">gopi hii</Heading>
-                      <Text>@gopi hii</Text>
+                      <Heading fontSize="16px">gopi hii</Heading>
+                      <Text fontSize={'14px'}>@gopi hii</Text>
                     </Flex>
                   </Flex>
                   <Button bg="black" colorScheme='white' borderRadius={'50px'}>Follow</Button>
                 </Flex>
               ))
             }
+
           </Flex>
 
           {/* what is happenning secttion her  */}
           <Flex direction={'column'} justifyContent={'flex-start'} bg='gray.100'>
-            <Heading fontSize='25px' color='#0F1419 ' fontFamily={'revert'} p='15px'>What is happening</Heading>
+            <Heading fontSize='22px' color='#0F1419 ' fontFamily={'revert'} p='15px'>What is happening</Heading>
             <Flex direction={'column'} >
               {
-                trendingArr.map(el => (
-                  <Flex direction={'column'} _hover={{ backgroundColor: 'gray.200' }} px='15px' py='10px' w='100%'  >
+                trendingArr.map((el, ind) => (
+                  <Flex direction={'column'} _hover={{ backgroundColor: 'gray.200' }} px='15px' py='10px' w='100%' key={ind}  >
                     <Flex justifyContent={'space-between'} w='100%' >
-                      <Text fontWeight={'bold'} color="gray.500" fontSize={'15px'}>This is text</Text>
+                      <Text color="gray.600" fontSize={'13px'}>This is text</Text>
                       <Heading fontSize='20px' cursor={'pointer'}>...</Heading>
                     </Flex>
-                    <Heading fontSize={'18px'}>#Gopi vishwakarma</Heading>
-                    <Text fontWeight={'bold'} color="gray.500" fontSize={'15px'}>25.5k tweets</Text>
+                    <Heading fontSize={'15px'}>#Gopi vishwakarma</Heading>
+                    <Text color="gray.600" fontSize={'13px'}>25.5k tweets</Text>
                   </Flex>
                 ))
               }
-
-
               <Heading fontSize={'18px'} color='blue.400' px='15px' py='10px' w='100%' _hover={{ backgroundColor: 'gray.200' }} cursor={'pointer'} >Show more</Heading>
             </Flex>
-          </Flex>      
+          </Flex>
 
         </Flex>
       </Box>
