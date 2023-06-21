@@ -39,7 +39,7 @@ const Home = () => {
   return (
     <Flex>
       <Box px="20px" overflowY={'auto'} h="100vh" position={'relative'}
-        w='60%'
+        w={{base:'100%',sm:'100%',md:'60%',lg:'60%'}}
         css={{
           '&::-webkit-scrollbar': {
             width: '4px',
@@ -72,7 +72,7 @@ const Home = () => {
         }
 
       </Box>
-      <Box w='40%'>
+      <Box w='40%' display={{base:'none',sm:'none',md:'block',lg:'block'}}>
         <RightSidebar />
       </Box>
     </Flex>

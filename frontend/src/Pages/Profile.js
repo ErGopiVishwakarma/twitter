@@ -41,7 +41,7 @@ const Profile = () => {
 
   return (
     <Flex w='100%'>
-      <Box w='60%' px="20px" overflowY={'auto'} h="100vh" position={'relative'}
+      <Box w={{base:'100%',sm:'100%',md:'60%',lg:'60%'}} px="20px" overflowY={'auto'} h="100vh" position={'relative'}
         css={{
           '&::-webkit-scrollbar': {
             width: '4px',
@@ -80,7 +80,7 @@ const Profile = () => {
         </VStack>
       </Box>
 
-      <Box w='40%'>
+      <Box w='40%' display={{base:'none',sm:'none',md:'block',lg:'block'}}>
         <Flex w='100%' position={'relative'} zIndex={2} direction={'column'} ml='15px' gap='20px' h='100vh' overflowY={'scroll'}
           fontFamily={'regulare.400'}
           css={{

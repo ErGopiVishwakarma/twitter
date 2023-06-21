@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { FaRegComment, FaRetweet, FaStreetView, FaShare } from 'react-icons/fa'
-import { BsHeart, BsFillHeartFill, BsHeartFill } from 'react-icons/bs'
+import { BsHeart, BsFillHeartFill, BsHeartFill, BsShare } from 'react-icons/bs'
 import { Box, Flex, Text, Tooltip } from '@chakra-ui/react'
 import {GrFormView} from 'react-icons/gr'
 import axios from 'axios'
@@ -9,7 +9,7 @@ import { VscHeart } from 'react-icons/vsc'
 
 const PostDetailLike = () => {
     // const token = JSON.parse(localStorage.getItem('twitteruser'))
-    const [like, setLike] = useState(0)
+    const [like, setLike] = useState()
     const [likeColor, setLikeColor] = useState()
     // const likeFun = async () => {
     //     try {
@@ -64,18 +64,18 @@ const PostDetailLike = () => {
     // }, [])
 
     return (
-        <Flex gap='50px'>
-            <Tooltip label="reply" aria-label='A tooltip'>
+        <Flex justifyContent={{base:'space-between'}} w='100%'>
+            <Tooltip label="reply" aria-label='A tooltip' hasArrow>
                 <Flex cursor={'pointer'} alignItems={'center'} _hover={{ textColor: '#17A589' }} >
                
                     <Box p="10px" _hover={{ backgroundColor: '#D5F5E3' }} borderRadius={'50%'}><FaRegComment fontSize={"16px"} /></Box>
           
-                    <Text>34</Text>
+                    <Text></Text>
                 </Flex>
             </Tooltip>
 
 
-            <Tooltip label="like" aria-label='A tooltip'>
+            <Tooltip label="like" aria-label='A tooltip' hasArrow>
                 <Flex cursor={'pointer'} alignItems={'center'} _hover={{ textColor: '#943126 ' }}>
                     <Box p="10px" borderRadius={'50%'}  _hover={{ backgroundColor: 'red.100' }}>
                         {
@@ -87,25 +87,25 @@ const PostDetailLike = () => {
             </Tooltip>
 
 
-            <Tooltip label="retweet" aria-label='A tooltip'>
+            <Tooltip label="retweet" aria-label='A tooltip' hasArrow>
                 <Flex cursor={'pointer'} alignItems={'center'} _hover={{ textColor: '#2874A6' }}>
                     <Box p="10px" _hover={{ backgroundColor: '#AED6F1' }} borderRadius={'50%'}><FaRetweet fontSize={"16px"} /></Box>
-                    <Text>34</Text>
+                    <Text></Text>
                 </Flex>
             </Tooltip>
 
 
-            <Tooltip label="views" aria-label='A tooltip'>
-                <Flex cursor={'pointer'} alignItems={'center'} _hover={{ textColor: 'green' }}>
+            <Tooltip label="views" aria-label='A tooltip' hasArrow >
+                <Flex cursor={'pointer'} alignItems={'center'} _hover={{ textColor: 'green' }} display={{base:'none',md:'block'}}>
                     <Box p="10px" _hover={{ backgroundColor: '#AED6F1' }} borderRadius={'50%'}><GrFormView p="10px" fontSize={"16px"} /></Box>
-                    <Text>34</Text>
+                    <Text></Text>
                 </Flex>
             </Tooltip>
 
 
-            <Tooltip label="share" aria-label='A tooltip'>
+            <Tooltip label="share" aria-label='A tooltip' hasArrow>
                 <Flex cursor={'pointer'} alignItems={'center'} _hover={{ textColor: '#17A589' }}>
-                    <FaShare fontSize={"16px"} />
+                    <BsShare fontSize={"16px"} />
                 </Flex>
             </Tooltip>
         </Flex>

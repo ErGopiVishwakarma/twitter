@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useParams } from 'react-router-dom'
 import MainPage from '../Pages/MainPage'
 import Login from '../auth/Login'
 import Home from '../Pages/Home'
@@ -14,6 +14,8 @@ import More from '../Pages/More'
 import PostDetail from '../Pages/PostDetail'
 
 const MainRoute = () => {
+  const gopi = useParams()
+  console.log('rout',gopi)
   return (
     <Routes w='100%'>
       <Route path='/' element={<Home />} />

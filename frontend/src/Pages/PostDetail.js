@@ -4,6 +4,7 @@ import PostDetailLike from '../Component/PostDetailLike'
 import LCSF from '../Component/homeComponent/LCSF'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
+import RightSidebar from './RightSidebar'
 
 const PostDetail = () => {
     const { id } = useParams()
@@ -32,7 +33,8 @@ const PostDetail = () => {
         // console.log(post)
     }, [])
     return (
-        <Flex px='20px' w='100%' direction={'column'} h='100vh' overflowY={'scroll'} gap='20px' position={'relative'}
+        <Flex w='100%'>
+            <Flex px='20px' w={{base:'100%',sm:'100%',md:'60%',lg:'60%'}}direction={'column'} h='100vh' overflowY={'scroll'} gap='20px' position={'relative'}
             css={{
                 '&::-webkit-scrollbar': {
                     width: '4px',
@@ -79,7 +81,7 @@ const PostDetail = () => {
                                 <Flex justifyContent={'space-between'} w='100%' alignItems={'center'}>
                                     <Flex gap="10px" alignItems={'center'}>
                                         <Heading fontSize={'18px'}>{el.postedBy.name}</Heading>
-                                        <Text>@gopi vishwakarma. 5h</Text>
+                                        <Text>5h</Text>
                                     </Flex>
                                     <Button display={'flex'} alignContent={'center'} justifyContent={'center'} variant={'unstyled'} px={'10px'} _hover={{ backgroundColor: 'gray.100' }} borderRadius={'50%'} fontWeight={'bolder'} fontSize="20px">...</Button>
                                 </Flex>
@@ -91,6 +93,11 @@ const PostDetail = () => {
                     ))
                 }
             </Flex>
+        </Flex>
+
+        <Box w='40%' display={{base:'none',sm:'none',md:'block',lg:'block'}}>
+            <RightSidebar />
+        </Box>
         </Flex>
     )
 }

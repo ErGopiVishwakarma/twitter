@@ -38,17 +38,18 @@ userRouter.post('/login', async (req, res) => {
 })
 
 
-
-userRouter.get('/allusers',authenticate, async (req, res) => {
+// search the user 
+userRouter.get('/searchuser',authenticate, async (req, res) => {
     const searchData = req.query.search ? {
         $or: [
             { "name": { $regex: req.query.search, $options: 'i' } },
             { "email": { $regex: req.query.search, $options: 'i' } },
+            // { "username": {$regex: req.query.search, $options: 'i'} },
         ]
     } : {};
 
     const user = await UserModel.find(searchData).find({ _id: { $ne: req.user.id }})
-    res.send(user)
+    res.status(200).send(user)
 })
 
  

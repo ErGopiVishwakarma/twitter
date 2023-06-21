@@ -26,7 +26,7 @@ const MainPage = () => {
         </Box>
         <BiMoon fontSize={obj} />
       </Flex>
-      <Box w={{ base: '100%', md: '90%', lg: '80%' }} position={'relative'}>
+      <Box w={{ base: '100%', md: '90%', lg: '80%' }} position={'relative'} >
         <MainRoute />
       </Box>
       {/* <Box w={{ base: "", sm: "", md: "30%", lg: "30%" }} display={{ base: 'none', sm: "none", md: 'block', lg: 'block' }} position={'relative'}>

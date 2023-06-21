@@ -10,7 +10,7 @@ const Notification = () => {
 
   return (
     <Flex w='100%'>
-      <Flex direction='column' w='60%' px='50px'>
+      <Flex direction='column' w={{base:'100%',sm:'100%',md:'60%',lg:'60%'}} px='50px'>
         <Flex w='100%' gap='40px' alignItems={'center'} justifyContent={'space-between'} h='70px' alignItems='center'>
            <Heading fontSize='26px'>Notification</Heading>
           <FiSettings fontSize={'25px'} />
@@ -30,7 +30,7 @@ const Notification = () => {
         </Tabs>
       </Flex>
 
-      <Box w='40%'>
+      <Box w='40%' display={{base:'none',sm:'none',md:'block',lg:'block'}}>
         <Flex w='100%' position={'relative'} zIndex={2} direction={'column'} ml='15px' gap='20px' h='100vh' overflowY={'scroll'}
           fontFamily={'regulare.400'}
           css={{
