@@ -66,9 +66,9 @@ const Post = ({ el }) => {
 
                 </Flex>
                 <NavLink to={`post/${el._id}`}>
-                    <pre>
-                        <Text wordBreak={'break-all'}>{el.content}</Text>
-                    </pre>
+                    
+                        <Text w='100%' display={'flex'} wordBreak={'break-all'}>{el.content}</Text>
+                  
                 </NavLink>
                 <Box borderRadius={{ base: "15px", md: '25px' }} w="100%">
                     <Image src={el.picture} borderRadius={{ base: "15px", md: '25px' }} />

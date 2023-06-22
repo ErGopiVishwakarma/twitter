@@ -6,6 +6,7 @@ import axios from 'axios'
 import RightSidebar from './RightSidebar'
 import { BiSearch } from 'react-icons/bi'
 import { useParams } from 'react-router-dom'
+import { BsFillCameraFill } from 'react-icons/bs'
 
 const Profile = () => {
   const followArr = new Array(3).fill(0)
@@ -14,7 +15,20 @@ const Profile = () => {
   const [post, setPost] = useState([])
   const { userId } = useParams()
   const [profile, setProfile] = useState({})
-  console.log('userId' + userId)
+  const [followText, setFollowText] = useState('following')
+  const [againRender, setAgainRender] = useState(false)
+  const [follower, setFollower] = useState(0)
+  const [following, setFollowing] = useState(0)
+  const [bgImage, setBgImage] = useState('')
+
+
+  const changeText = () => {
+    setFollowText('unfollow')
+  }
+  const previousText = () => {
+    setFollowText('following')
+  }
+
   const userProfile = async () => {
     try {
       const config = {
@@ -24,20 +38,93 @@ const Profile = () => {
         }
       }
       const { data } = await axios.get(`http://localhost:8080/user/profile/${userId}`, config)
-      console.log(data)
+      console.log(data.user[0])
       setPost(data.posts)
       setProfile(data.user[0])
+      setFollower(data.user[0].followers.length)
+      setFollowing(data.user[0].following.length)
 
     } catch (error) {
       console.log(error.message)
       alert('ohh something went wrong')
     }
   }
-  console.log(post, profile)
+
   useEffect(() => {
     userProfile()
-  }, [])
+  }, [againRender])
 
+  const followUser = async () => {
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token.token}`
+        }
+      }
+      const { data } = await axios.put(`http://localhost:8080/user/follow`, {
+        followerId: profile._id
+      }, config)
+      setAgainRender(prev => !prev)
+
+    } catch (error) {
+      console.log(error.message)
+      alert('ohh something went wrong')
+    }
+  }
+
+  const unfollowUser = async () => {
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token.token}`
+        }
+      }
+      const { data } = await axios.put(`http://localhost:8080/user/unfollow`, {
+        unfollowId: profile._id
+      }, config)
+      setAgainRender(prev => !prev)
+
+    } catch (error) {
+      console.log(error.message)
+      alert('ohh something went wrong')
+    }
+  }
+
+const changeBg=async(parameter)=>{
+  try {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token.token}`
+      }
+    }
+    const { data } = await axios.put(`http://localhost:8080/user/bgpicchange`, {
+      bgpic:parameter
+    }, config)
+    setAgainRender(prev => !prev)
+
+  } catch (error) {
+    console.log(error.message)
+    alert('ohh something went wrong')
+  }
+}
+
+  // setup background image 
+  const setBackground = async (pics) => {
+    const data = new FormData();
+    data.append("file", pics);
+    data.append("upload_preset", "chat-app");
+    data.append("cloud_name", "dr2fwpzbx");
+    const config = {
+      mode: 'no-cors',
+    }
+    const value = await axios.post('https://api.cloudinary.com/v1_1/dr2fwpzbx/image/upload', data, config)
+    if(value.data.url){
+      changeBg(value.data.url)
+    }
+  }
 
   return (
     <Flex w='100%'>
@@ -57,18 +144,42 @@ const Profile = () => {
         <Box w="100%" h="60px" position={'fixed'} zIndex={1} bg="white" display={{ base: 'none', sm: 'none', md: 'block' }} >
           <Heading fontSize={'22px'}>Profile</Heading>
         </Box>
-        <Box h="250px" w='100%' bg="gray.300" pt='60px' position={'relative'}>
-          <Avatar src={profile?.pic} h='120px' w='120px' position={'absolute'} bottom={'-60px'} left="30px" />
-        </Box>
+        {/* backgroundpic setup  */}
+        {
+          !profile?.backgroundpic ? <Box h="250px" w='100%' bg="gray.300" pt='60px' position={'relative'}>
+            {
+              profile._id === token.user._id ? <Box p='15px' _hover={{ backgroundColor: 'red.100' }} borderRadius={'50%'} position={'absolute'} bottom={0} right={0} cursor={'pointer'}>
+                <Input type='file' id="image-media" accept='image/*' display={'none'} onChange={(e) => setBackground(e.target.files[0])} />
+                <label for="image-media"><BsFillCameraFill fontSize={'35px'} cursor={'pointer'} /></label>
+              </Box> : ""
+            }
+            <Avatar src={profile?.pic} h='120px' w='120px' position={'absolute'} bottom={'-60px'} left="30px" />
+          </Box> : <Box h="250px" w='100%' pt='60px' position={'relative'} bgImage={profile.backgroundpic} bgSize={'cover'} bgRepeat={'no-repeat'}>
+            {
+              profile._id === token.user._id ? <Box p='15px'  bg='red.100' borderRadius={'50%'} position={'absolute'} bottom={0} right={0} cursor={'pointer'}>
+                <Input type='file' id="image-media" accept='image/*' display={'none'} onChange={(e) => setBackground(e.target.files[0])} />
+                <label for="image-media"><BsFillCameraFill fontSize={'35px'} cursor={'pointer'} /></label>
+              </Box> : ""
+            }
+            <Avatar src={profile?.pic} h='120px' w='120px' position={'absolute'} bottom={'-60px'} left="30px" />
+          </Box>
+        }
+
         <Flex justifyContent={'flex-end'} pt="15px">
-          <Button borderRadius={'50px'} border={'1px solid black'} px="25px" py='10px'>Edit Profile</Button>
+          {
+            profile._id === token.user._id ? <Button borderRadius={'50px'} border={'1px solid black'} px="25px" py='10px'>Edit Profile</Button> :
+              profile.followers?.includes(token.user._id) ?
+                <Button borderRadius={'50px'} border={'1px solid black'} px="25px" py='10px' color={followText === 'unfollow' ? 'red' : 'black'} onMouseOver={changeText} onMouseOut={previousText} onClick={unfollowUser}>{followText}</Button> :
+                <Button borderRadius={'50px'} border={'1px solid black'} px="25px" py='10px' bg='black' colorScheme='white' onClick={followUser}>Follow</Button>
+          }
+
         </Flex>
         <Flex direction={'column'} pt="30px" gap="10px">
           <Heading fontSize={'18px'}>{profile?.name}</Heading>
           <Text>joinded june 2023</Text>
           <Flex gap="30px">
-            <Button variant={'unstyled'}>5  Followers</Button>
-            <Button variant={'unstyled'}>0  Following</Button>
+            <Button variant={'unstyled'}>{follower} Followers</Button>
+            <Button variant={'unstyled'}>{following} Following</Button>
           </Flex>
         </Flex>
         <VStack pt="30px">

@@ -10,6 +10,7 @@ const userRouter = express.Router()
 userRouter.get('/', (req, res) => {
     res.send('hii this is user page')
 })
+
 userRouter.post('/signup', async(req, res) => {
     const { name, email, pic } = req.body
     try {
@@ -66,6 +67,51 @@ userRouter.get('/profile/:userId',authenticate,(req,res)=>{
     })
 })
 
+
+// follow and unfollow logic is here 
+
+userRouter.put('/follow',authenticate,(req,res)=>{
+    UserModel.findByIdAndUpdate(req.body.followerId,{
+        $push:{followers:req.user._id}
+    },{new:true}).then(result=>{
+            UserModel.findByIdAndUpdate(req.user._id,{
+                $push:{following:req.body.followerId}
+            },{new:true}).then(value=>{
+                res.send({value,result})
+            }).catch(err=>{
+                res.status(400).send({err:err.message})
+            })
+    }).catch(err=>{
+        res.status(400).send({err:err.message})
+    })
+})
+
+userRouter.put('/unfollow',authenticate,(req,res)=>{
+    UserModel.findByIdAndUpdate(req.body.unfollowId,{
+        $pull:{followers:req.user._id}
+    },{new:true}).then(result=>{
+            UserModel.findByIdAndUpdate(req.user._id,{
+                $pull:{following:req.body.unfollowId}
+            },{new:true}).then(value=>{
+                res.send({value,result})
+            }).catch(err=>{
+                res.status(400).send({err:err.message})
+            })
+    }).catch(err=>{
+        res.status(400).send({err:err.message})
+    })
+})
+
+// change background pic logic 
+userRouter.put('/bgpicchange',authenticate,(req,res)=>{
+    UserModel.findByIdAndUpdate(req.user._id,{
+        "backgroundpic":req.body.bgpic
+    },{new:true}).then(result=>{
+       res.send(result)
+    }).catch(err=>{
+        res.send({err:err.message})
+    })
+})
 
 
 module.exports = {

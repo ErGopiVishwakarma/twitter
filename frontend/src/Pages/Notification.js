@@ -39,7 +39,7 @@ const Notification = () => {
   return (
     <Flex w='100%'>
       <Flex direction='column' w={{ base: '100%', sm: '100%', md: '60%', lg: '60%' }} px='50px'>
-        <Flex w='100%' gap='40px' alignItems={'center'} justifyContent={'space-between'} h='70px' alignItems='center'>
+        <Flex w='100%' gap='40px' alignItems={'center'} justifyContent={'space-between'} h='70px'>
           <Heading fontSize='26px'>Notification</Heading>
           <FiSettings fontSize={'25px'} />
         </Flex>
