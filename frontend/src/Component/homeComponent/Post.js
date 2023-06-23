@@ -71,7 +71,9 @@ const Post = ({ el }) => {
                   
                 </NavLink>
                 <Box borderRadius={{ base: "15px", md: '25px' }} w="100%">
-                    <Image src={el.picture} borderRadius={{ base: "15px", md: '25px' }} />
+                    <Image src={el.picture} borderRadius={{ base: "15px", md: '25px' }} 
+                     w="100%" 
+                     />
                 </Box>
                 <LCSF postId={el._id} user={el} />
             </Flex>

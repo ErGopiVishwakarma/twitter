@@ -13,11 +13,25 @@ import './Style/app.css'
 function App() {
 
 	const twitteruser = localStorage.getItem('twitteruser') || ""
+
+	const fun = async()=>{
+		try {
+			const data = await axios.get('http://localhost:8080/auth/login/success')
+			console.log(data)
+		} catch (error) {
+			console.log(error)
+		}
+	}
   
+
+	useEffect(()=>{
+		fun()
+	},[])
+	
   return (
       <Box className="app">
 		{
-			twitteruser?<MainPage />:<Login />
+			twitteruser?<MainPage />:<Auth />
 		}
 	  </Box>
       

@@ -5,6 +5,7 @@ import LCSF from '../Component/homeComponent/LCSF'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import RightSidebar from './RightSidebar'
+import { FaLongArrowAltLeft } from 'react-icons/fa'
 
 const PostDetail = () => {
     const { id } = useParams()
@@ -34,7 +35,7 @@ const PostDetail = () => {
     }, [])
     return (
         <Flex w='100%'>
-            <Flex px='20px' w={{base:'100%',sm:'100%',md:'60%',lg:'60%'}}direction={'column'} h='100vh' overflowY={'scroll'} gap='20px' position={'relative'}
+            <Flex px='20px' w={{base:'100%',sm:'100%',md:'100%',lg:'60%'}}direction={'column'} h='100vh' overflowY={'scroll'} gap='20px' position={'relative'}
             css={{
                 '&::-webkit-scrollbar': {
                     width: '4px',
@@ -47,8 +48,9 @@ const PostDetail = () => {
                 },
             }}
         >
-            <Flex alignItems={'center'} w='100%' justifyContent={'flex-start'} h='70px' bg="white" position={'fixed'} zIndex={1}>
-                <Heading fontSize={'23px'}>detail page</Heading>
+            <Flex alignItems={'center'} w='100%' justifyContent={'flex-start'} h='70px' bg="white" position={'fixed'} zIndex={1} gap='50px'>
+            <Box onClick={()=>window.history.back()} p='10px' pb='20px' cursor={'pointer'} fontSize={'20px'} display={{ base: 'block', sm: 'block', md: 'none' }}><FaLongArrowAltLeft /></Box>
+                <Heading fontSize={'20px'}>Tweet</Heading>
             </Flex>
             <Flex w='100%' pt='80px' alignItems={'center'}>
                 <Flex justifyContent={'space-between'} w='100%' >
@@ -95,7 +97,7 @@ const PostDetail = () => {
             </Flex>
         </Flex>
 
-        <Box w='40%' display={{base:'none',sm:'none',md:'block',lg:'block'}}>
+        <Box w='40%' display={{base:'none',sm:'none',md:'none',lg:'block'}}>
             <RightSidebar />
         </Box>
         </Flex>

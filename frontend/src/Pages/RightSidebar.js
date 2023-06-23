@@ -36,7 +36,7 @@ const RightSidebar = () => {
     }
     console.log(searchResult)
     return (
-        <Flex w='100%' position={'relative'} zIndex={2} direction={'column'} ml='15px' gap='20px' h='100vh' overflowY={'scroll'}
+        <Flex w='100%' position={'relative'} zIndex={2} direction={'column'} ml='15px' gap='20px' h='100vh' overflowY={'scroll'} pt='10px'
             fontFamily={'regulare.400'}
             css={{
                 '&::-webkit-scrollbar': {

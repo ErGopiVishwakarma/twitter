@@ -24,13 +24,15 @@ import {
 import React from 'react'
 import { BiUserPlus } from 'react-icons/bi'
 import { BsBookmark, BsList, BsTwitter } from 'react-icons/bs'
-
+import { NavLink } from 'react-router-dom'
 
 
 
 export default function MobileNavbar({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = React.useRef()
+  const token = JSON.parse(localStorage.getItem('twitteruser'))
+
 
   return (
     <>
@@ -51,7 +53,7 @@ export default function MobileNavbar({ children }) {
           <DrawerBody>
             <Flex direction={'column'} gap='20px'>
               <Flex direction={'column'} gap='15px'>
-                <Avatar />
+                <NavLink to={`profile/${token.user._id}`}><Avatar /></NavLink>
                 <Flex direction={'column'}>
                   <Heading fontSize={'17px'}>Gopi vishwakarma</Heading>
                   <Text>@gopi12345</Text>
@@ -63,22 +65,26 @@ export default function MobileNavbar({ children }) {
               </Flex>
 
               <Flex direction={'column'} gap='20px'>
-                <Flex gap='20px' alignItems={'center'}>
-                  <BiUserPlus fontSize={'30px'} />
-                  <Heading fontSize='18px'>Profile</Heading>
-                </Flex>
-                <Flex gap='20px' alignItems={'center'}>
+                <NavLink to={`profile/${token.user._id}`}>
+                  <Flex gap='20px' alignItems={'center'} onClick={onClose}>
+                    <BiUserPlus fontSize={'30px'} />
+                    <Heading fontSize='18px'>Profile</Heading>
+                  </Flex>
+                </NavLink>
+                <Flex gap='20px' alignItems={'center'} onClick={onClose}>
                   <BsTwitter fontSize={'30px'} color='blue.400' />
                   <Heading fontSize='18px'>twitter blue</Heading>
                 </Flex>
-                <Flex gap='20px' alignItems={'center'}>
+                <Flex gap='20px' alignItems={'center'} onClick={onClose}>
                   <BsList fontSize={'30px'} />
                   <Heading fontSize='18px'>List</Heading>
                 </Flex>
-                <Flex gap='20px' alignItems={'center'}>
-                  <BsBookmark fontSize={'30px'} />
-                  <Heading fontSize='18px'>Bookmark</Heading>
-                </Flex>
+                <NavLink to='/bookmark'>
+                  <Flex gap='20px' alignItems={'center'} onClick={onClose}>
+                    <BsBookmark fontSize={'30px'} />
+                    <Heading fontSize='18px'>Bookmark</Heading>
+                  </Flex>
+                </NavLink>
               </Flex>
 
               {/* accordian  */}
@@ -116,7 +122,7 @@ export default function MobileNavbar({ children }) {
                     <Text fontSize={'17px'}>Setting and Support</Text>
                     <AccordionIcon />
                   </AccordionButton>
-                  <AccordionPanel  display={'flex'} direction='column' gap='15px'>
+                  <AccordionPanel display={'flex'} direction='column' gap='15px'>
                     <Flex gap='25px' alignItems={'center'}>
                       <BiUserPlus fontSize={'22px'} />
                       <Text fontSize='15px'>Analytics</Text>

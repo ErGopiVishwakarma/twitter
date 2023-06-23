@@ -1,8 +1,9 @@
 import { Avatar, Box, Button, Center, Flex, Heading, Image, Link, Text } from '@chakra-ui/react'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { VscTwitter } from 'react-icons/vsc'
 import { FcGoogle } from 'react-icons/fc'
 import { BsApple } from 'react-icons/bs'
+import axios from 'axios'
 
 const Auth = () => {
 

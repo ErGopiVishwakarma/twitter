@@ -7,6 +7,7 @@ import RightSidebar from './RightSidebar'
 import { BiSearch } from 'react-icons/bi'
 import { useParams } from 'react-router-dom'
 import { BsFillCameraFill } from 'react-icons/bs'
+import { FaLongArrowAltLeft } from 'react-icons/fa'
 
 const Profile = () => {
   const followArr = new Array(3).fill(0)
@@ -128,7 +129,7 @@ const changeBg=async(parameter)=>{
 
   return (
     <Flex w='100%'>
-      <Box w={{ base: '100%', sm: '100%', md: '60%', lg: '60%' }} px="20px" overflowY={'auto'} h="100vh" position={'relative'}
+      <Box w={{ base: '100%', sm: '100%', md: '100%', lg: '60%' }} px="20px" overflowY={'auto'} h="100vh" position={'relative'}
         css={{
           '&::-webkit-scrollbar': {
             width: '4px',
@@ -144,6 +145,7 @@ const changeBg=async(parameter)=>{
         <Box w="100%" h="60px" position={'fixed'} zIndex={1} bg="white" display={{ base: 'none', sm: 'none', md: 'block' }} >
           <Heading fontSize={'22px'}>Profile</Heading>
         </Box>
+        <Box onClick={()=>window.history.back()} p='10px' pb='20px' cursor={'pointer'} fontSize={'20px'} display={{ base: 'block', sm: 'block', md: 'none' }}><FaLongArrowAltLeft /></Box>
         {/* backgroundpic setup  */}
         {
           !profile?.backgroundpic ? <Box h="250px" w='100%' bg="gray.300" pt='60px' position={'relative'}>
@@ -154,7 +156,7 @@ const changeBg=async(parameter)=>{
               </Box> : ""
             }
             <Avatar src={profile?.pic} h='120px' w='120px' position={'absolute'} bottom={'-60px'} left="30px" />
-          </Box> : <Box h="250px" w='100%' pt='60px' position={'relative'} bgImage={profile.backgroundpic} bgSize={'cover'} bgRepeat={'no-repeat'}>
+          </Box> : <Box h={{base:'150px',sm:'200px',md:'250px'}} w='100%' pt='60px' position={'relative'} bgImage={profile.backgroundpic} bgSize={'cover'} bgRepeat={'no-repeat'}>
             {
               profile._id === token.user._id ? <Box p='15px'  bg='red.100' borderRadius={'50%'} position={'absolute'} bottom={0} right={0} cursor={'pointer'}>
                 <Input type='file' id="image-media" accept='image/*' display={'none'} onChange={(e) => setBackground(e.target.files[0])} />
@@ -191,7 +193,7 @@ const changeBg=async(parameter)=>{
         </VStack>
       </Box>
 
-      <Box w='40%' display={{ base: 'none', sm: 'none', md: 'block', lg: 'block' }}>
+      <Box w='40%' display={{ base: 'none', sm: 'none', md: 'none', lg: 'block' }}>
         <Flex w='100%' position={'relative'} zIndex={2} direction={'column'} ml='15px' gap='20px' h='100vh' overflowY={'scroll'}
           fontFamily={'regulare.400'}
           css={{

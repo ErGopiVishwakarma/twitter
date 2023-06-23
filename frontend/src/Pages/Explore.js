@@ -8,8 +8,9 @@ import ExploreTabPanal from '../Component/ExploreTabPanal'
 import { ContextProvider } from '../Route/ContextApi'
 import axios from 'axios'
 import Post from '../Component/homeComponent/Post'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import SearchUserList from '../Component/SearchUserList'
+import MobileNavbar from '../Component/navComponent/MobileNavbar'
 
 const Explore = () => {
   const trendingArr = new Array(6).fill(0)
@@ -19,7 +20,8 @@ const Explore = () => {
   const [loading, setLoading] = useState(false)
   const [searchResult, setSearchResult] = useState([])
   const token = JSON.parse(localStorage.getItem('twitteruser'))
-
+  const location = useLocation()
+  console.log(location)
   const getPost = async () => {
     try {
       const config = {
@@ -69,7 +71,7 @@ const Explore = () => {
     <>
       <Flex>
         <Flex px="20px" overflowY={'auto'} h="100vh" position={'relative'} direction={'column'} gap='20px'
-          w={{ base: '100%', sm: '100%', md: '60%', lg: '60%' }}
+          w={{ base: '100%', sm: '100%', md: '100%', lg: '60%' }}
           css={{
             '&::-webkit-scrollbar': {
               width: '4px',
@@ -82,17 +84,20 @@ const Explore = () => {
             },
           }}
         >
-          <Flex w='100%' gap='40px' alignItems={'center'}>
+          <Flex w='100%' gap='10px' alignItems={'center'} pt='10px'>
+            <Box mr='10px' display={{base:'block',md:"none"}}>
+              <MobileNavbar><Avatar h='33px' w='33px' src={token.user.pic} /></MobileNavbar>
+            </Box>
             <InputGroup w="100%"  >
               <InputLeftElement pointerEvents='none'>
                 <BiSearch color='gray.200' />
               </InputLeftElement>
-              <Input type='text' placeholder='search' borderRadius={'50px'} fontSize={'18px'} variant={'filled'} bg='gray.200' onChange={(e) => searchUser(e.target.value)} />
+              <Input type='text' h={{base:'33px',md:''}} placeholder='search' borderRadius={'50px'} fontSize={'18px'} variant={'filled'} bg='gray.200' onChange={(e) => searchUser(e.target.value)} />
             </InputGroup>
             <FiSettings fontSize={'25px'} />
           </Flex>
           {/* showing search result here  */}
-          <Flex direction={'column'} position={'absolute'} zIndex={12} w='570px' bg='white' boxShadow={'rgba(0, 0, 0, 0.24) 0px 3px 8px'} mt='40px' >
+          <Flex direction={'column'} position={'absolute'} left={{ base: 0, md: '' }} zIndex={12} w={{ base: '100%', sm: '100%', md: '400px', lg: '560px' }} bg='white' boxShadow={'rgba(0, 0, 0, 0.24) 0px 3px 8px'} mt='40px' >
             {
               loading ? <Flex justify={'center'}><Spinner size='md' /> </Flex> :
                 searchResult?.map(el => (
@@ -137,7 +142,7 @@ const Explore = () => {
         </Flex>
 
 
-        <Box w='40%' display={{ base: 'none', sm: 'none', md: 'block', lg: 'block' }}>
+        <Box w='40%' display={{ base: 'none', sm: 'none', md: 'none', lg: 'block' }}>
           <Flex direction={'column'} p='15px' gap='20px' bg='gray.100'>
             <Heading fontSize={'22px'}>Who to follow</Heading>
             {

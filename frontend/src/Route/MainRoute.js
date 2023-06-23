@@ -12,10 +12,10 @@ import Verified from '../Pages/Verified'
 import Profile from '../Pages/Profile'
 import More from '../Pages/More'
 import PostDetail from '../Pages/PostDetail'
+import TweetPage from '../Pages/TweetPage'
 
 const MainRoute = () => {
   const gopi = useParams()
-  console.log('rout',gopi)
   return (
     <Routes w='100%'>
       <Route path='/' element={<Home />} />
@@ -24,7 +24,7 @@ const MainRoute = () => {
       <Route path="/message" element={<Message />} />
       <Route path='/list' element={<List />} />
       <Route path="/bookmark" element={<Bookmark />} />
-      {/* <Route path='/verified' element={<Verified />} /> */}
+      <Route path='/tweetpage' element={<TweetPage />} />
       <Route path="/profile/:userId" element={<Profile />} />
       <Route path="/explore/profile/:userId" element={<Profile />} />
       <Route path="/notification/profile/:userId" element={<Profile />} />

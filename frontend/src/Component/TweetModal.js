@@ -28,7 +28,7 @@ import { BsEmojiSmile } from 'react-icons/bs'
 import axios from 'axios'
 import '../Style/comment.css'
 
-const TweetModal = () => {
+const TweetModal = ({children}) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const token = JSON.parse(localStorage.getItem('twitteruser'))
     const [text, setText] = useState()
@@ -47,7 +47,7 @@ const TweetModal = () => {
     }
     return (
         <>
-            <Button variant={'unstyled'} onClick={onOpen} my='13px' fontSize="18px" color="white" bg='blue.400' borderRadius={'50px'}>tweet</Button>
+            <Box onClick={()=>onOpen()} >{children}</Box>
 
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />

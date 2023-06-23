@@ -67,7 +67,9 @@ export default function DesktopNav() {
                 ))}
 
                 {/* extra added code for identification  */}
-                <TweetModal />
+                <TweetModal>
+                <Button variant={'unstyled'} my='13px' fontSize="18px" color="white" bg='blue.400' borderRadius={'50px'} w='100%'>tweet</Button>
+                </TweetModal>
                 <Flex justifyContent={'space-between'} alignItems={'center'} p="10px" _hover={{ backgroundColor: 'gray.200' }} borderRadius={'50px'} cursor={'pointer'}>
                     <Flex gap='10px'>
                         <Avatar w='35px' h='35px' src="" name='gopi vish' />

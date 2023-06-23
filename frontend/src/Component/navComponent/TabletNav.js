@@ -22,43 +22,48 @@ import {
 } from 'react-icons/fi';
 import { VscTwitter } from "react-icons/vsc"
 import { NavLink } from 'react-router-dom';
-import {CgTwitter} from 'react-icons/cg'
+import { CgTwitter } from 'react-icons/cg'
+import TweetModal from '../TweetModal';
 
 const LinkItems = [
-    { name: 'Home', icon: FiHome,link:'/' },
-    { name: 'Explore', icon: FiSearch,link:'/explore' },
-    { name: 'Notifications', icon: FiBell,link:'/notification' },
-    { name: 'Messages', icon: FiMessageSquare,link:'/message' },
-    { name: 'Lists', icon: FiList ,link:'/list'},
-    { name: 'Bookmarks', icon: FiBookmark ,link:'/bookmark'},
-    { name: 'Veirfied', icon: FiCheck ,link:'/verified'},
-    { name: 'Profile', icon: FiUser,link:'/profile' },
-    { name: 'More', icon: FiMenu ,link:'/more'},
+    { name: 'Home', icon: FiHome, link: '/' },
+    { name: 'Explore', icon: FiSearch, link: '/explore' },
+    { name: 'Notifications', icon: FiBell, link: '/notification' },
+    { name: 'Messages', icon: FiMessageSquare, link: '/message' },
+    { name: 'Lists', icon: FiList, link: '/list' },
+    { name: 'Bookmarks', icon: FiBookmark, link: '/bookmark' },
+    { name: 'Veirfied', icon: FiCheck, link: '/verified' },
+    { name: 'Profile', icon: FiUser, link: '/profile' },
+    { name: 'More', icon: FiMenu, link: '/more' },
 ];
 
 export default function TabletNav() {
+    const token = JSON.parse(localStorage.getItem('twitteruser'))
+
     return (
-        <Flex alignItems={'center'} justifyContent={'center'} maxH="100vh" overflowY={'scroll'} w='100%'  position={'relative'}>
+        <Flex justifyContent={'center'} h="100vh" overflowY={'scroll'} w='100%' position={'relative'}>
             <Flex direction={'column'} overflow={'srcoll'} w='100%' gap="20px">
-                <Flex alignItems="center"  justifyContent="space-between" >
+                <Flex alignItems="center" justifyContent="space-between" >
                     <Box p='11px' _hover={{ bg: 'pink' }} borderRadius={'50%'}>
                         <VscTwitter color='#1D9BF0' fontSize={'35px'} />
                     </Box>
                 </Flex>
                 {LinkItems.map((link) => (
-                    <NavItem key={link.name} icon={link.icon} link={link.link}>
+                    <NavItem key={link.name} icon={link.icon} link={link.link === '/profile' ? `${link.link}/${token.user._id}` : `${link.link}`}>
                         {link.name}
                     </NavItem>
                 ))}
 
                 {/* extra added code for identification  */}
-                <Button   bg='blue.400' borderRadius={'50%'}>
-                    <CgTwitter color='white' />
-                </Button>
-                
-                    <Box position={'absolute'} bottom={'0px'}>
-                        <Avatar w='35px' h='35px' src="" name='gopi vish' />
-                    </Box>
+                <TweetModal>
+                    <Button bg='blue.400' borderRadius={'50%'}>
+                        <CgTwitter color='white' />
+                    </Button>
+                </TweetModal>
+
+                <Box position={'absolute'} bottom={'30px'}>
+                    <Avatar w='35px' h='35px' src="" name='gopi vish' />
+                </Box>
                 {/* till here ..... */}
             </Flex>
         </Flex>
@@ -66,15 +71,15 @@ export default function TabletNav() {
 }
 
 
-const NavItem = ({ icon,link}) => {
+const NavItem = ({ icon, link }) => {
     return (
         <NavLink to={link} style={{ textDecoration: 'none' }} >
             <Flex
                 fontSize={'20px'}
                 align="center"
-               
+
                 py='3'
-               
+
                 role="group"
                 cursor="pointer">
                 {icon && (
@@ -85,7 +90,7 @@ const NavItem = ({ icon,link}) => {
                         color={'blackAlpha.900'}
                     />
                 )}
-              
+
             </Flex>
         </NavLink>
     );

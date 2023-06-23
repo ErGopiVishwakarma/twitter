@@ -2,6 +2,8 @@ const authRouter = require("express").Router();
 const passport = require("passport");
 const jwt = require('jsonwebtoken')
 const UserModel = require('../model/userModel')
+const successRedirect = "http://localhost:3000/"
+const failedRedirect = "http://localhost:3000/auth"
 
 authRouter.get('/', (req, res) => {
 	res.send('this is auth page')
@@ -11,6 +13,11 @@ authRouter.get('/', (req, res) => {
 
 authRouter.get("/login/success", async (req, res) => {
 
+	if (!req.user) {
+		return res.redirect(`${failedRedirect}?authsuccess=false`)
+	  }
+	//   console.log(payload)
+	//   res.redirect(`${successRedirect}`)
 		try {
 			const { name, email, picture } = req.user._json
 			const data = await UserModel.find({ email })
@@ -57,9 +64,9 @@ authRouter.get("/google", passport.authenticate("google", ["profile", "email"]),
 
 authRouter.get(
 	"/google/callback",
-	passport.authenticate("google", {
-		successRedirect: 'http://localhost:3000',
-		failureRedirect: "/login/failed",
+	passport.authenticate("google", { 
+		successRedirect: '/auth/login/success',
+		failureRedirect: "/auth/login/failed",
 	})
 );
 

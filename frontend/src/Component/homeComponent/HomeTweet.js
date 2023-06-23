@@ -74,7 +74,7 @@ const HomeTweet = () => {
     }, [text])
   
     return (
-        <Flex w='100%' pt={{base:'10px',sm:'15px',md:'70px',lg:'70px'}} pb="20px" gap="20px">
+        <Flex w='100%'  pb="20px" gap="20px" display={{base:'none',md:'flex'}}>
             <Box>
                 <Avatar src={token.user?.pic} h="40px" w='40px' />
             </Box>

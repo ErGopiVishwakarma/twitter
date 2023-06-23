@@ -28,7 +28,7 @@ postRouter.post('/createpost', async (req, res) => {
 
 postRouter.get('/getpost', async (req, res) => {
     try {
-        const post = await PostModel.find({ postedBy: req.user._id }).populate("postedBy")
+        const post = await PostModel.find({ postedBy: req.user._id }).populate("postedBy").sort('-createdAt')
         res.send(post)
     } catch (error) {
         res.status(402).send({ err: error.message })
@@ -37,7 +37,7 @@ postRouter.get('/getpost', async (req, res) => {
 
 postRouter.get('/getallpost', async (req, res) => {
     try {
-        const post = await PostModel.find().populate('postedBy').populate('comments.postedBy')
+        const post = await PostModel.find().populate('postedBy').populate('comments.postedBy').sort('-createdAt')
         res.send(post)
     } catch (error) {
         res.status(402).send({ err: error.message })
@@ -136,6 +136,13 @@ postRouter.delete('/deletepost/:postId',(req,res)=>{
     })
 })
 
-
+//getting all post of following user
+postRouter.get('/followinguserpost',async(req,res)=>{
+    PostModel.find({postedBy:{$in:req.user.following}}).populate('postedBy').populate('comments.postedBy').then(result=>{
+        res.send(result)
+    }).catch(err=>{
+        res.send(err)
+    })
+})
 
 module.exports = postRouter

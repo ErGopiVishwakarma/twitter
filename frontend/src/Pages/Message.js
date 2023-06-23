@@ -1,16 +1,23 @@
-import { Button, Flex, Heading, Text } from '@chakra-ui/react'
+import { Avatar, Box, Button, Flex, Heading, Text } from '@chakra-ui/react'
 import React from 'react'
 import { FiMessageSquare, FiSettings } from 'react-icons/fi'
+import MobileNavbar from '../Component/navComponent/MobileNavbar'
 
 const Message = () => {
+
+  const token = JSON.parse(localStorage.getItem('twitteruser'))
+
   return (
-    <Flex>
-      <Flex w='45%' px='40px' direction={'column'} gap='50px'>
+    <Flex >
+      <Flex w={{base:'100%',sm:'100%',md:'100%',lg:'45%'}} px={{base:'20px',md:"40px"}} direction={'column'} gap='50px' justifyContent={{md:'center'}}>
         <Flex w='100%' justifyContent={'space-between'} h='60px' alignItems={'center'}>
+        <Box display={{base:'block',md:'none'}}>
+        <MobileNavbar><Avatar h='33px' w='33px' src={token.user.pic}  /></MobileNavbar>
+        </Box>
           <Heading fontSize='20px'>Message</Heading>
           <Flex gap={'40px'}>
-            <FiSettings fontSize={'25px'} />
-            <FiMessageSquare fontSize={'25px'} />
+            <FiSettings fontSize={'22px'}  />
+           <Box display={{base:'none',md:'block'}}> <FiMessageSquare fontSize={'25px'} /></Box>
           </Flex>
         </Flex>
         <Flex gap='15px' direction={'column'}>
@@ -23,7 +30,7 @@ const Message = () => {
       </Flex>
 
 
-      <Flex w='55%' alignItems='center' justifyContent={'center'} pt='300px'>
+      <Flex w='55%' alignItems='center' justifyContent={'center'} pt='300px' display={{base:'none',sm:'none',md:'none',lg:'flex'}}>
         <Flex gap='15px' direction={'column'}>
           <Heading fontSize={'25px'}>
             Select a Message

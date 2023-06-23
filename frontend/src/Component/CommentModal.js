@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
     Modal,
     ModalOverlay,
@@ -28,6 +28,8 @@ import '../Style/comment.css'
 const CommentModal = ({ children,user,postId ,setComment}) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [pic, setPic] = useState("")
+    const [loading, setLoading] = useState(true)
+    const [imageSelect, setImageSelect] = useState(false)
     const token = JSON.parse(localStorage.getItem('twitteruser'))
     const [text,setText] = useState('')
 
@@ -39,8 +41,10 @@ const CommentModal = ({ children,user,postId ,setComment}) => {
         const config = {
             mode: 'no-cors',
         }
+        setImageSelect(true)
         const value = await axios.post('https://api.cloudinary.com/v1_1/dr2fwpzbx/image/upload', data, config)
         setPic(value.data.url)
+        setImageSelect(false)
     }
 
     // comment logic here 
@@ -57,14 +61,30 @@ const CommentModal = ({ children,user,postId ,setComment}) => {
                 text,
                 postId
             }, config)
-            console.log(data)
-           let length = data.data.comments.length
-           setComment(length)
+           setComment(data.data.comments.length)
+           setText('')
         } catch (error) {
             console.log(error.message)
             alert('ohh something went wrong')
         }
     }
+
+    useEffect(() => {
+        if (imageSelect) {
+            setLoading(true)
+        } else {
+            setLoading(false)
+        }
+    }, [imageSelect])
+
+    useEffect(() => {
+        if (text) {
+            setLoading(false)
+        } else {
+            setLoading(true)
+        }
+    }, [text])
+
     return (
         <>
             <Button variant={'unstyled'} onClick={onOpen}>{children}</Button>
@@ -100,7 +120,7 @@ const CommentModal = ({ children,user,postId ,setComment}) => {
                                     <Avatar src={token.user.pic} h="40px" w='40px' />
                                 </Box>
                                 <Flex w='100%' direction={'column'} alignItems={'flex-start'} gap="8px">
-                                    <Textarea id="commentInput" placeholder='Tweet your reply!' fontSize={'20px'} variant={'unstyled'} minH={'100px'}
+                                    <Textarea id="commentInput" placeholder='Tweet your reply!' value={text} fontSize={'20px'} variant={'unstyled'} minH={'100px'}
                                         css={{
                                             '&::-webkit-scrollbar': {
                                                 width: '4px',
@@ -145,7 +165,7 @@ const CommentModal = ({ children,user,postId ,setComment}) => {
                                 </Box>
                             </Tooltip>
                         </Flex>
-                        <Button colorScheme='blue' mr={3} borderRadius={'50px'} onClick={commentFun} >
+                        <Button colorScheme='blue' mr={3} borderRadius={'50px'} onClick={commentFun} isDisabled={loading}>
                             Reply
                         </Button>
 
