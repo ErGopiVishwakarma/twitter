@@ -53,7 +53,7 @@ export default function MobileNavbar({ children }) {
           <DrawerBody>
             <Flex direction={'column'} gap='20px'>
               <Flex direction={'column'} gap='15px'>
-                <NavLink to={`profile/${token.user._id}`}><Avatar /></NavLink>
+                <NavLink to={`profile/${token._id}`}><Avatar /></NavLink>
                 <Flex direction={'column'}>
                   <Heading fontSize={'17px'}>Gopi vishwakarma</Heading>
                   <Text>@gopi12345</Text>
@@ -65,7 +65,7 @@ export default function MobileNavbar({ children }) {
               </Flex>
 
               <Flex direction={'column'} gap='20px'>
-                <NavLink to={`profile/${token.user._id}`}>
+                <NavLink to={`profile/${token._id}`}>
                   <Flex gap='20px' alignItems={'center'} onClick={onClose}>
                     <BiUserPlus fontSize={'30px'} />
                     <Heading fontSize='18px'>Profile</Heading>

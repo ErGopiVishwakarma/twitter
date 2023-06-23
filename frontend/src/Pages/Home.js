@@ -70,7 +70,7 @@ const Home = () => {
           <Heading fontSize={'22px'} px='20px' pt='10px'>Home</Heading>
         </Box>
         <Flex gap='130px' alignContent={'center'} px='20px' textColor={'blue.400'} display={{ base: 'flex', sm: 'flex', md: 'none' }} pt='15px'>
-          <MobileNavbar><Avatar src={token.user.pic} h='33px' w='33px' /></MobileNavbar>
+          <MobileNavbar><Avatar src={token.pic} h='33px' w='33px' /></MobileNavbar>
           <Box><FaTwitter fontSize={'28px'} /></Box>
         </Flex>
         <Tabs >
@@ -93,7 +93,7 @@ const Home = () => {
                   </Box> : <VStack spacing={'20px'} pb={{base:'60px',md:'10px'}}>
                     {
                       post?.map(el => (
-                        <Post el={el} key={el._id} />
+                        <Post el={el} key={el?._id} />
                       ))
                     }
                     <Heading textAlign={'center'} fontSize='15px' pt='10px'>you reached till end.</Heading>

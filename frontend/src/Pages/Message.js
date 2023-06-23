@@ -9,15 +9,15 @@ const Message = () => {
 
   return (
     <Flex >
-      <Flex w={{base:'100%',sm:'100%',md:'100%',lg:'45%'}} px={{base:'20px',md:"40px"}} direction={'column'} gap='50px' justifyContent={{md:'center'}}>
+      <Flex w={{ base: '100%', sm: '100%', md: '100%', lg: '45%' }} px={{ base: '20px', md: "40px" }} direction={'column'} gap='50px' justifyContent={{ md: 'center' }}>
         <Flex w='100%' justifyContent={'space-between'} h='60px' alignItems={'center'}>
-        <Box display={{base:'block',md:'none'}}>
-        <MobileNavbar><Avatar h='33px' w='33px' src={token.user.pic}  /></MobileNavbar>
-        </Box>
+          <Box display={{ base: 'block', md: 'none' }}>
+            <MobileNavbar><Avatar h='33px' w='33px' src={token.pic} /></MobileNavbar>
+          </Box>
           <Heading fontSize='20px'>Message</Heading>
           <Flex gap={'40px'}>
-            <FiSettings fontSize={'22px'}  />
-           <Box display={{base:'none',md:'block'}}> <FiMessageSquare fontSize={'25px'} /></Box>
+            <FiSettings fontSize={'22px'} />
+            <Box display={{ base: 'none', md: 'block' }}> <FiMessageSquare fontSize={'25px'} /></Box>
           </Flex>
         </Flex>
         <Flex gap='15px' direction={'column'}>
@@ -30,7 +30,7 @@ const Message = () => {
       </Flex>
 
 
-      <Flex w='55%' alignItems='center' justifyContent={'center'} pt='300px' display={{base:'none',sm:'none',md:'none',lg:'flex'}}>
+      <Flex w='55%' alignItems='center' justifyContent={'center'} pt='300px' display={{ base: 'none', sm: 'none', md: 'none', lg: 'flex' }}>
         <Flex gap='15px' direction={'column'}>
           <Heading fontSize={'25px'}>
             Select a Message

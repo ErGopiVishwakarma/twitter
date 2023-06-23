@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import {
     Modal,
     ModalOverlay,
@@ -27,12 +27,16 @@ import { BiPoll } from 'react-icons/bi'
 import { BsEmojiSmile } from 'react-icons/bs'
 import axios from 'axios'
 import '../Style/comment.css'
+import { ContextProvider } from '../Route/ContextApi'
 
 const TweetModal = ({children}) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const token = JSON.parse(localStorage.getItem('twitteruser'))
     const [text, setText] = useState()
     const [pic, setPic] = useState("")
+    const [loading, setLoading] = useState(true)
+    const [imageSelect, setImageSelect] = useState(false)
+    const {setHomeUpdate} = useContext(ContextProvider)
 
     const setProfile = async (pics) => {
         const data = new FormData();
@@ -42,9 +46,56 @@ const TweetModal = ({children}) => {
         const config = {
             mode: 'no-cors',
         }
+        setImageSelect(true)
         const value = await axios.post('https://api.cloudinary.com/v1_1/dr2fwpzbx/image/upload', data, config)
         setPic(value.data.url)
+        setImageSelect(false)
     }
+
+    const makePost = async () => {
+        if (!text && !pic) {
+            alert('please write something')
+            return;
+        }
+        if (!pic) {
+            pic = ""
+        }
+        try {
+            const config = {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token.token}`
+                }
+            }
+            const data = await axios.post(`http://localhost:8080/post/createpost`, {
+                content: text,
+                picture: pic,
+            }, config)
+            setHomeUpdate(prev=>!prev)
+            setText('')
+            setPic('')
+        } catch (error) {
+            console.log(error.message)
+            alert('ohh something went wrong')
+        }
+    }
+    useEffect(() => {
+        if (imageSelect) {
+            setLoading(true)
+        } else {
+            setLoading(false)
+        }
+    }, [imageSelect])
+
+    useEffect(() => {
+        if (text) {
+            setLoading(false)
+        } else {
+            setLoading(true)
+        }
+    }, [text])
+
+
     return (
         <>
             <Box onClick={()=>onOpen()} >{children}</Box>
@@ -58,7 +109,7 @@ const TweetModal = ({children}) => {
                     <ModalBody>
                         <Flex gap="20px">
                             <Box>
-                                <Avatar src={token.user.pic} h="40px" w='40px' />
+                                <Avatar src={token?.pic} h="40px" w='40px' />
                             </Box>
                             <Flex direction={'column'} w='100%'>
                                 <Select h={'25px'} w="150px" display={'flex'} alignItems={'center'} justifyContent={'center'} color={'blue.500'}>
@@ -111,7 +162,7 @@ const TweetModal = ({children}) => {
                             </Tooltip>
                         </Flex>
 
-                        <Button colorScheme='blue' mr={3} borderRadius={'50px'} >
+                        <Button colorScheme='blue' mr={3} borderRadius={'50px'} onClick={makePost} isDisabled={loading}>
                             tweet
                         </Button>
 

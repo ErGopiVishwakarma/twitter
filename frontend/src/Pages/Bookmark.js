@@ -6,7 +6,7 @@ const Bookmark = () => {
 
   return (
     <Flex w='100%'>
-      <Box px="20px" overflowY={'auto'} h="100vh" position={'relative'}
+      <Box px="20px" overflowY={'auto'} h="100vh" position={'relative'} pt='10px'
         w={{base:'100%',sm:'100%',md:'100%',lg:'60%'}}
         css={{
           '&::-webkit-scrollbar': {

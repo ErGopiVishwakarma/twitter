@@ -13,15 +13,6 @@ const ExploreTabPanal = () => {
             </TabList>
 
             <TabPanels>
-                {/* <TabPanel>
-                    <p>one!</p>
-                </TabPanel>
-                <TabPanel>
-                    <p>two!</p>
-                </TabPanel>
-                <TabPanel>
-                    <p>three!</p>
-                </TabPanel> */}
             </TabPanels>
         </Tabs>
     )

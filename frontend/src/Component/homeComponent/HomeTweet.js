@@ -76,7 +76,7 @@ const HomeTweet = () => {
     return (
         <Flex w='100%'  pb="20px" gap="20px" display={{base:'none',md:'flex'}}>
             <Box>
-                <Avatar src={token.user?.pic} h="40px" w='40px' />
+                <Avatar src={token.pic} h="40px" w='40px' />
             </Box>
             <Flex w='100%' direction={'column'} gap='10px'>
                 <Textarea placeholder='what is happening' fontSize={'22px'} value={text} minH="80px" onChange={(e) => setText(e.target.value)}

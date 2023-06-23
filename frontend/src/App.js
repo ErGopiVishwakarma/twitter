@@ -1,32 +1,39 @@
 import { Box, Flex } from "@chakra-ui/react";
-import Navbar from "./Route/Navbar";
-import MainRoute from "./Route/MainRoute";
 import Auth from "./Authentication/Auth";
-import Home from "./Pages/Home";
 import { useEffect, useState } from "react";
 import axios from 'axios'
 import MainPage from "./Pages/MainPage";
-import Login from "./auth/Login";
 import './Style/app.css'
+import { useSearchParams } from "react-router-dom";
 
 
 function App() {
+   const [searchParam,setSearchParams] = useSearchParams()
+   let getToken = searchParam.get('token') 
+   const id = searchParam.get('userID')
+   let [twitteruser ,setTwitterUser] = useState('')
 
-	const twitteruser = localStorage.getItem('twitteruser') || ""
-
-	const fun = async()=>{
+   const storeUserInfoFun = async() =>{
+	if( id && getToken){
 		try {
-			const data = await axios.get('http://localhost:8080/auth/login/success')
-			console.log(data)
-		} catch (error) {
-			console.log(error)
+			const {data} = await axios.get(`http://localhost:8080/user/userInfo/${id}`)
+			data.token = getToken
+			localStorage.setItem('twitteruser',JSON.stringify(data))
+			setSearchParams({userID:'',token:''})
+			window.location.reload()
+		} catch (error) { 
+			console.log(error,'gopi pagal error')
 		}
 	}
-  
-
-	useEffect(()=>{
-		fun()
-	},[])
+   }
+  useEffect(()=>{
+	storeUserInfoFun()
+	let value = localStorage.getItem('twitteruser') || ''
+	if(value){
+	   setTwitterUser(JSON.parse(value))
+	}
+  },[])
+ 
 	
   return (
       <Box className="app">

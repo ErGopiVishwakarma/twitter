@@ -38,6 +38,13 @@ userRouter.post('/login', async (req, res) => {
     }
 })
 
+userRouter.get('/userInfo/:userId',async(req,res)=>{
+    UserModel.findById(req.params.userId).then(result=>{
+        res.send(result)
+    }).catch(err=>{
+        res.send({err:err.message})
+    })
+})
 
 // search the user 
 userRouter.get('/searchuser',authenticate, async (req, res) => {

@@ -46,10 +46,10 @@ const FollowingUserPost = () => {
                         </Box> : <VStack spacing={'20px'}>
                             {
                                 post?.map(el => (
-                                    <Post el={el} key={el._id} />
+                                    <Post el={el} key={el?._id} />
                                 ))
                             }
-                            <Heading textAlign={'center'} fontSize='15px' pt='10px'>you reached till end.</Heading>
+                            <Heading textAlign={'center'} fontSize='15px'>you reached till end.</Heading>
                         </VStack>
                     }
                 </Box>

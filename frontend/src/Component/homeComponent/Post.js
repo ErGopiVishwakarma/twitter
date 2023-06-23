@@ -24,14 +24,14 @@ const Post = ({ el }) => {
     return (
         <Flex gap="20px" w="100%">
             <Box>
-                <NavLink to={`profile/${el.postedBy._id}`}>
+                <NavLink to={`profile/${el?.postedBy?._id}`}>
                     <Avatar src={el.postedBy.pic} h={{ base: '30px', sm: '40px', md: "40px" }} w={{ base: '30px', sm: '40px', md: "40px" }} />
                 </NavLink>
             </Box>
             <Flex w='100%' direction={'column'} alignItems={'flex-start'} gap="8px">
                 <Flex justifyContent={'space-between'} w="100%" >
-                    <NavLink to={`profile/${el.postedBy._id}`}>
-                        <Heading fontSize="18px">{el.postedBy.name}</Heading>
+                    <NavLink to={`profile/${el?.postedBy?._id}`}>
+                        <Heading fontSize="18px">{el?.postedBy.name}</Heading>
                     </NavLink>
                     {/* delete functionality here  */}
                     <Menu>
@@ -39,8 +39,8 @@ const Post = ({ el }) => {
                             <Heading fontSize={'20px'}>...</Heading>
                         </MenuButton>
                         <MenuList>
-                            <MenuItem color='red' display={el.postedBy._id === token.user._id ? "block" : 'none'}>
-                                <DeleteModal postId={el._id} />
+                            <MenuItem color='red' display={el?.postedBy?._id === token.user?._id ? "block" : 'none'}>
+                                <DeleteModal postId={el?._id} />
                             </MenuItem>
                             <MenuItem>
                                 <Flex gap='10px' alignItems={'center'}>
@@ -65,17 +65,17 @@ const Post = ({ el }) => {
                     {/* till here  */}
 
                 </Flex>
-                <NavLink to={`post/${el._id}`}>
+                <NavLink to={`post/${el?._id}`}>
                     
-                        <Text w='100%' display={'flex'} wordBreak={'break-all'}>{el.content}</Text>
+                        <Text w='100%' display={'flex'} wordBreak={'break-all'}>{el?.content}</Text>
                   
                 </NavLink>
                 <Box borderRadius={{ base: "15px", md: '25px' }} w="100%">
-                    <Image src={el.picture} borderRadius={{ base: "15px", md: '25px' }} 
+                    <Image src={el?.picture} borderRadius={{ base: "15px", md: '25px' }} 
                      w="100%" 
                      />
                 </Box>
-                <LCSF postId={el._id} user={el} />
+                <LCSF postId={el?._id} user={el} />
             </Flex>
         </Flex>
     )

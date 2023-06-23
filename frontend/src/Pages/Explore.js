@@ -86,7 +86,7 @@ const Explore = () => {
         >
           <Flex w='100%' gap='10px' alignItems={'center'} pt='10px'>
             <Box mr='10px' display={{base:'block',md:"none"}}>
-              <MobileNavbar><Avatar h='33px' w='33px' src={token.user.pic} /></MobileNavbar>
+              <MobileNavbar><Avatar h='33px' w='33px' src={token.pic} /></MobileNavbar>
             </Box>
             <InputGroup w="100%"  >
               <InputLeftElement pointerEvents='none'>
@@ -142,7 +142,7 @@ const Explore = () => {
         </Flex>
 
 
-        <Box w='40%' display={{ base: 'none', sm: 'none', md: 'none', lg: 'block' }}>
+        <Box w='40%' display={{ base: 'none', sm: 'none', md: 'none', lg: 'block' }} pt='10px'>
           <Flex direction={'column'} p='15px' gap='20px' bg='gray.100'>
             <Heading fontSize={'22px'}>Who to follow</Heading>
             {

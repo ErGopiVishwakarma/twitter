@@ -42,7 +42,7 @@ const Notification = () => {
       <Flex direction='column' w={{ base: '100%', sm: '100%', md: '100%', lg: '60%' }} px={{base:'20px',md:'50px'}}>
         <Flex w='100%' gap='40px' alignItems={'center'} justifyContent={'space-between'} h='70px'>
         <Box display={{base:'block',md:'none'}}>
-        <MobileNavbar><Avatar h='33px' w='33px' src={token.user.pic}  /></MobileNavbar>
+        <MobileNavbar><Avatar h='33px' w='33px' src={token.pic}  /></MobileNavbar>
         </Box>
           <Heading fontSize={{base:'20px',md:'26px'}}>Notification</Heading>
           <FiSettings fontSize={{base:'22px',md:'25px'}} />
@@ -63,7 +63,7 @@ const Notification = () => {
       </Flex>
 
       <Box w='40%' display={{ base: 'none', sm: 'none', md: 'none', lg: 'block' }}>
-        <Flex w='100%' position={'relative'} zIndex={2} direction={'column'} ml='15px' gap='20px' h='100vh' overflowY={'scroll'}
+        <Flex w='100%' position={'relative'} zIndex={2} direction={'column'} ml='15px' gap='20px' h='100vh' overflowY={'scroll'} pt='10px'
           fontFamily={'regulare.400'}
           css={{
             '&::-webkit-scrollbar': {

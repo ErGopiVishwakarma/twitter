@@ -22,7 +22,7 @@ const Profile = () => {
   const [following, setFollowing] = useState(0)
   const [bgImage, setBgImage] = useState('')
 
-
+console.log(profile)
   const changeText = () => {
     setFollowText('unfollow')
   }
@@ -127,9 +127,11 @@ const changeBg=async(parameter)=>{
     }
   }
 
+  console.log(profile)
+
   return (
     <Flex w='100%'>
-      <Box w={{ base: '100%', sm: '100%', md: '100%', lg: '60%' }} px="20px" overflowY={'auto'} h="100vh" position={'relative'}
+      <Box w={{ base: '100%', sm: '100%', md: '100%', lg: '60%' }} px="20px" overflowY={'auto'} h="100vh" position={'relative'} pt='10px'
         css={{
           '&::-webkit-scrollbar': {
             width: '4px',
@@ -142,7 +144,7 @@ const changeBg=async(parameter)=>{
           },
         }}
       >
-        <Box w="100%" h="60px" position={'fixed'} zIndex={1} bg="white" display={{ base: 'none', sm: 'none', md: 'block' }} >
+        <Box w="100%" h="60px"  bg="white" display={{ base: 'none', sm: 'none', md: 'block' }} >
           <Heading fontSize={'22px'}>Profile</Heading>
         </Box>
         <Box onClick={()=>window.history.back()} p='10px' pb='20px' cursor={'pointer'} fontSize={'20px'} display={{ base: 'block', sm: 'block', md: 'none' }}><FaLongArrowAltLeft /></Box>
@@ -150,7 +152,7 @@ const changeBg=async(parameter)=>{
         {
           !profile?.backgroundpic ? <Box h="250px" w='100%' bg="gray.300" pt='60px' position={'relative'}>
             {
-              profile._id === token.user._id ? <Box p='15px' _hover={{ backgroundColor: 'red.100' }} borderRadius={'50%'} position={'absolute'} bottom={0} right={0} cursor={'pointer'}>
+              profile?._id === token._id ? <Box p='15px' _hover={{ backgroundColor: 'red.100' }} borderRadius={'50%'} position={'absolute'} bottom={0} right={0} cursor={'pointer'}>
                 <Input type='file' id="image-media" accept='image/*' display={'none'} onChange={(e) => setBackground(e.target.files[0])} />
                 <label for="image-media"><BsFillCameraFill fontSize={'35px'} cursor={'pointer'} /></label>
               </Box> : ""
@@ -158,7 +160,7 @@ const changeBg=async(parameter)=>{
             <Avatar src={profile?.pic} h='120px' w='120px' position={'absolute'} bottom={'-60px'} left="30px" />
           </Box> : <Box h={{base:'150px',sm:'200px',md:'250px'}} w='100%' pt='60px' position={'relative'} bgImage={profile.backgroundpic} bgSize={'cover'} bgRepeat={'no-repeat'}>
             {
-              profile._id === token.user._id ? <Box p='15px'  bg='red.100' borderRadius={'50%'} position={'absolute'} bottom={0} right={0} cursor={'pointer'}>
+              profile?._id === token._id ? <Box p='15px'  bg='red.100' borderRadius={'50%'} position={'absolute'} bottom={0} right={0} cursor={'pointer'}>
                 <Input type='file' id="image-media" accept='image/*' display={'none'} onChange={(e) => setBackground(e.target.files[0])} />
                 <label for="image-media"><BsFillCameraFill fontSize={'35px'} cursor={'pointer'} /></label>
               </Box> : ""
@@ -169,8 +171,8 @@ const changeBg=async(parameter)=>{
 
         <Flex justifyContent={'flex-end'} pt="15px">
           {
-            profile._id === token.user._id ? <Button borderRadius={'50px'} border={'1px solid black'} px="25px" py='10px'>Edit Profile</Button> :
-              profile.followers?.includes(token.user._id) ?
+            profile?._id === token._id ? <Button borderRadius={'50px'} border={'1px solid black'} px="25px" py='10px'>Edit Profile</Button> :
+              profile.followers?.includes(token._id) ?
                 <Button borderRadius={'50px'} border={'1px solid black'} px="25px" py='10px' color={followText === 'unfollow' ? 'red' : 'black'} onMouseOver={changeText} onMouseOut={previousText} onClick={unfollowUser}>{followText}</Button> :
                 <Button borderRadius={'50px'} border={'1px solid black'} px="25px" py='10px' bg='black' colorScheme='white' onClick={followUser}>Follow</Button>
           }
@@ -194,8 +196,8 @@ const changeBg=async(parameter)=>{
       </Box>
 
       <Box w='40%' display={{ base: 'none', sm: 'none', md: 'none', lg: 'block' }}>
-        <Flex w='100%' position={'relative'} zIndex={2} direction={'column'} ml='15px' gap='20px' h='100vh' overflowY={'scroll'}
-          fontFamily={'regulare.400'}
+        <Flex w='100%' position={'relative'} zIndex={2} direction={'column'} ml='15px' gap='20px' h='100vh' overflowY={'scroll'} pt='10px'
+          fontFamily={'regulare.400'} 
           css={{
             '&::-webkit-scrollbar': {
               width: '4px',

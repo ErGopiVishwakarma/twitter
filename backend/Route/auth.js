@@ -16,33 +16,23 @@ authRouter.get("/login/success", async (req, res) => {
 	if (!req.user) {
 		return res.redirect(`${failedRedirect}?authsuccess=false`)
 	  }
-	//   console.log(payload)
-	//   res.redirect(`${successRedirect}`)
 		try {
 			const { name, email, picture } = req.user._json
 			const data = await UserModel.find({ email })
 			if (data.length >= 1) {
 				var token = jwt.sign({ userId: data[0]._id }, 'twitter');
-				res.status(200).send({
-					error: false,
-					message: "already Logged In",
-					user: req.user,
-					token: token,
-				});
+				let id = data[0]._id
+				res.redirect(`${successRedirect}?userID=${id}&token=${token}`)
 			} else {
-				const user = new UserModel({ name, email, picture })
+				const user = new UserModel({ name, email, pic:picture })
 				await user.save()
 				var token = jwt.sign({ userId: user._id }, 'twitter');
-				res.status(200).send({
-					error: false,
-					message: "Successfully Loged In",
-					user: req.user,
-					token: token,
-				});
+				let id = data[0]._id
+				res.redirect(`${successRedirect}?userID=${id}&token=${token}`)
 			}
 
 		} catch (error) {
-			res.status(401).json({ error: true, message: error.message })
+			res.redirect(`${failedRedirect}`)
 		}
 
 });

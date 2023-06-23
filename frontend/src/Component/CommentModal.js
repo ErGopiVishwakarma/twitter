@@ -117,7 +117,7 @@ const CommentModal = ({ children,user,postId ,setComment}) => {
                             </Flex>
                             <Flex gap="20px" w="100%">
                                 <Box>
-                                    <Avatar src={token.user.pic} h="40px" w='40px' />
+                                    <Avatar src={token.pic} h="40px" w='40px' />
                                 </Box>
                                 <Flex w='100%' direction={'column'} alignItems={'flex-start'} gap="8px">
                                     <Textarea id="commentInput" placeholder='Tweet your reply!' value={text} fontSize={'20px'} variant={'unstyled'} minH={'100px'}

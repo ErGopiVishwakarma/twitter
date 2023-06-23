@@ -49,7 +49,7 @@ export default function TabletNav() {
                     </Box>
                 </Flex>
                 {LinkItems.map((link) => (
-                    <NavItem key={link.name} icon={link.icon} link={link.link === '/profile' ? `${link.link}/${token.user._id}` : `${link.link}`}>
+                    <NavItem key={link.name} icon={link.icon} link={link.link === '/profile' ? `${link.link}/${token._id}` : `${link.link}`}>
                         {link.name}
                     </NavItem>
                 ))}
