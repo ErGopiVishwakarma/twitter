@@ -1,5 +1,5 @@
 import { Avatar, Box, Button, Flex, Input, Select, Text, Textarea, Tooltip, useToast } from '@chakra-ui/react'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { memo, useContext, useEffect, useState } from 'react'
 import { MdPermMedia } from 'react-icons/md'
 import { AiOutlineFileGif } from 'react-icons/ai'
 import {FaArrowLeftLong, FaLongArrowAltLeft} from 'react-icons/fa'
@@ -48,7 +48,7 @@ const TweetPage = () => {
                     Authorization: `Bearer ${token.token}`
                 }
             }
-            const data = await axios.post(`http://localhost:8080/post/createpost`, {
+            const data = await axios.post(`https://social-world.onrender.com/post/createpost`, {
                 content: text,
                 picture: pic,
             }, config)
@@ -138,4 +138,4 @@ const TweetPage = () => {
     )
 }
 
-export default TweetPage
+export default memo(TweetPage)

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import {
     Modal,
     ModalOverlay,
@@ -57,7 +57,7 @@ const CommentModal = ({ children,user,postId ,setComment}) => {
                     Authorization: `Bearer ${token.token}`
                 }
             }
-            const data = await axios.put(`http://localhost:8080/post/comment`, {
+            const data = await axios.put(`https://social-world.onrender.com/post/comment`, {
                 text,
                 postId
             }, config)
@@ -176,4 +176,4 @@ const CommentModal = ({ children,user,postId ,setComment}) => {
     )
 }
 
-export default CommentModal
+export default memo(CommentModal)

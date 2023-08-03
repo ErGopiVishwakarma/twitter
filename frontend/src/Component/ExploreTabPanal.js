@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
 
 const ExploreTabPanal = () => {
@@ -18,4 +18,4 @@ const ExploreTabPanal = () => {
     )
 }
 
-export default ExploreTabPanal
+export default memo(ExploreTabPanal)

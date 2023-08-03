@@ -1,5 +1,5 @@
 
-import React, { useContext, useEffect, useState } from 'react'
+import React, { memo, useContext, useEffect, useState } from 'react'
 import {
     Modal,
     ModalOverlay,
@@ -67,7 +67,7 @@ const TweetModal = ({children}) => {
                     Authorization: `Bearer ${token.token}`
                 }
             }
-            const data = await axios.post(`http://localhost:8080/post/createpost`, {
+            const data = await axios.post(`https://social-world.onrender.com/post/createpost`, {
                 content: text,
                 picture: pic,
             }, config)
@@ -173,4 +173,4 @@ const TweetModal = ({children}) => {
     )
 }
 
-export default TweetModal
+export default memo(TweetModal)

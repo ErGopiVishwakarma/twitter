@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 
 const Verified = () => {
   return (
@@ -6,4 +6,4 @@ const Verified = () => {
   )
 }
 
-export default Verified
+export default memo(Verified)

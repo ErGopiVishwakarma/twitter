@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import { FaRegComment, FaRetweet, FaStreetView, FaShare } from 'react-icons/fa'
 import { BsHeart, BsFillHeartFill, BsHeartFill, BsShare } from 'react-icons/bs'
 import { Box, Flex, Text, Tooltip } from '@chakra-ui/react'
@@ -19,7 +19,7 @@ const PostDetailLike = () => {
     //                 Authorization: `Bearer ${token.token}`
     //             }
     //         }
-    //         const data = await axios.put(`http://localhost:8080/post/like`, {
+    //         const data = await axios.put(`https://curious-plum-stole.cyclic.app/post/like`, {
     //             postId
     //         }, config)
     //         if (data?.status === 200) {
@@ -43,7 +43,7 @@ const PostDetailLike = () => {
     //                 Authorization: `Bearer ${token.token}`
     //             }
     //         }
-    //         const data = await axios.post(`http://localhost:8080/post/likerender`, {
+    //         const data = await axios.post(`https://curious-plum-stole.cyclic.app/post/likerender`, {
     //             postId
     //         }, config)
     //         if (data?.status === 200) {
@@ -112,4 +112,4 @@ const PostDetailLike = () => {
     )
 }
 
-export default PostDetailLike
+export default memo(PostDetailLike)

@@ -1,5 +1,5 @@
 import { Avatar, Box, Button, Flex, Heading, Text } from '@chakra-ui/react'
-import React from 'react'
+import React, { memo } from 'react'
 import { FiMessageSquare, FiSettings } from 'react-icons/fi'
 import MobileNavbar from '../Component/navComponent/MobileNavbar'
 
@@ -9,18 +9,18 @@ const Message = () => {
 
   return (
     <Flex >
-      <Flex w={{ base: '100%', sm: '100%', md: '100%', lg: '45%' }} px={{ base: '20px', md: "40px" }} direction={'column'} gap='50px' justifyContent={{ md: 'center' }}>
-        <Flex w='100%' justifyContent={'space-between'} h='60px' alignItems={'center'}>
+      <Flex w={{ base: '100%', sm: '100%', md: '100%', lg: '45%' }} px={{ base: '0px', md: "40px" }} direction={'column'} gap='50px' justifyContent={{ md: 'center' }}>
+        <Flex w='100%' justifyContent={'space-between'} h='60px' alignItems={'center'} px={{base:'10px',md:"none"}}>
           <Box display={{ base: 'block', md: 'none' }}>
             <MobileNavbar><Avatar h='33px' w='33px' src={token.pic} /></MobileNavbar>
           </Box>
-          <Heading fontSize='20px'>Message</Heading>
+          <Heading fontSize='22px'>Message</Heading>
           <Flex gap={'40px'}>
             <FiSettings fontSize={'22px'} />
             <Box display={{ base: 'none', md: 'block' }}> <FiMessageSquare fontSize={'25px'} /></Box>
           </Flex>
         </Flex>
-        <Flex gap='15px' direction={'column'}>
+        <Flex gap='15px' direction={'column'} ml={{base:'20px',md:'40px'}}>
           <Heading fontSize={'25px'}>
             Welcome to your<br /> inbox!
           </Heading>
@@ -43,4 +43,4 @@ const Message = () => {
   )
 }
 
-export default Message
+export default memo(Message)

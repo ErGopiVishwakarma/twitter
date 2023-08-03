@@ -1,5 +1,5 @@
 import { Avatar, Box, Button, Flex, Input, Textarea, Tooltip, useToast } from '@chakra-ui/react'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { memo, useContext, useEffect, useState } from 'react'
 import { MdPermMedia } from 'react-icons/md'
 import { AiOutlineFileGif } from 'react-icons/ai'
 import { BiPoll } from 'react-icons/bi'
@@ -45,7 +45,7 @@ const HomeTweet = () => {
                     Authorization: `Bearer ${token.token}`
                 }
             }
-            const data = await axios.post(`http://localhost:8080/post/createpost`, {
+            const data = await axios.post(`https://social-world.onrender.com/post/createpost`, {
                 content: text,
                 picture: pic,
             }, config)
@@ -74,7 +74,7 @@ const HomeTweet = () => {
     }, [text])
   
     return (
-        <Flex w='100%'  pb="20px" gap="20px" display={{base:'none',md:'flex'}}>
+        <Flex w='100%'  pb="20px" gap="20px" display={{base:'none',md:'flex'}} px='10px'>
             <Box>
                 <Avatar src={token.pic} h="40px" w='40px' />
             </Box>
@@ -127,4 +127,4 @@ const HomeTweet = () => {
     )
 }
 
-export default HomeTweet
+export default memo(HomeTweet)

@@ -4,25 +4,29 @@ import { useEffect, useState } from "react";
 import axios from 'axios'
 import MainPage from "./Pages/MainPage";
 import './Style/app.css'
-import { useSearchParams } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 
-
+let setValue = ''
 function App() {
    const [searchParam,setSearchParams] = useSearchParams()
    let getToken = searchParam.get('token') 
    const id = searchParam.get('userID')
-   let [twitteruser ,setTwitterUser] = useState('')
+   const storageToken = localStorage.getItem('twitteruser') || ''
+   if(storageToken){
+        setValue = JSON.parse(storageToken)
+   }
+   let [twitteruser ,setTwitterUser] = useState(setValue)
 
    const storeUserInfoFun = async() =>{
 	if( id && getToken){
 		try {
-			const {data} = await axios.get(`http://localhost:8080/user/userInfo/${id}`)
+			const {data} = await axios.get(`https://social-world.onrender.com/user/userInfo/${id}`)
 			data.token = getToken
 			localStorage.setItem('twitteruser',JSON.stringify(data))
 			setSearchParams({userID:'',token:''})
 			window.location.reload()
 		} catch (error) { 
-			console.log(error,'gopi pagal error')
+			console.log(error)
 		}
 	}
    }
@@ -33,12 +37,12 @@ function App() {
 	   setTwitterUser(JSON.parse(value))
 	}
   },[])
- 
+  console.log(twitteruser)
 	
   return (
       <Box className="app">
 		{
-			twitteruser?<MainPage />:<Auth />
+		  twitteruser?<MainPage />:<Auth />
 		}
 	  </Box>
       

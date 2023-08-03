@@ -8,11 +8,11 @@ import axios from 'axios'
 const Auth = () => {
 
   const googleAuth = () =>{
-    window.open('http://localhost:8080/auth/google/callback','_self')
+    window.open(`https://social-world.onrender.com/auth/google/callback`,'_self')
   }
   return (
     <Flex w="100%" h='100vh' direction={{ base: 'column', md: 'column', lg: 'row' }}  >
-      <Box w={{ base: '%', md: '', lg: '50%' }} px={{ base: '50px', md: '100px', lg: '170px' }} py={{ base: '50px', md: '100px', lg: '50px' }} m={{ base: 'auto' }} boxShadow={{ base: 'none', md: 'rgba(0, 0, 0, 0.24) 0px 3px 8px', lg: 'none' }}>
+      <Box w={{ base: '100%', md: '100%', lg: '50%' }}  px={{ base: '30px', md: '100px', lg: '170px' }} py={{ base: '50px', md: '100px', lg: '50px' }} boxShadow={{ base: 'none', md: 'rgba(0, 0, 0, 0.24) 0px 3px 8px', lg: 'none' }}>
         <Flex direction='column'>
           <Box>
             <VscTwitter color='#1D9BF0' fontSize={'60px'} />
@@ -34,7 +34,7 @@ const Auth = () => {
               {/* </Link> */}
             </Button>
            
-            <Button variant={'outline'} p='10px' borderRadius={'20px'}>
+            <Button variant={'outline'} p='10px' borderRadius={'20px'} onClick={googleAuth}>
               <Flex gap='20px' alignItems={'center'} justifyContent={'center'} fontSize='18px'>
                 <BsApple />
                 <Text>
@@ -52,16 +52,16 @@ const Auth = () => {
             <Text textAlign={'center'} fontSize={'18px'} fontWeight={'bolder'}>
               already have an account?
             </Text>
-            <Button variant={'outline'} p='10px' borderRadius={'20px'} border='1px solid black' fontSize={'20px'} textColor={'blue.400'}>
+            <Button variant={'outline'} p='10px' borderRadius={'20px'} border='1px solid black' fontSize={'20px'} textColor={'blue.400'} onClick={googleAuth}>
               sign in
             </Button>
           </Flex>
         </Flex>
       </Box>
-      <Box display={{ base: 'none', md: 'none', lg: 'block' }}>
+      <Box display={{ base: 'none', md: 'none', lg: 'block' }} w='100%' >
         <Image src="https://play-lh.googleusercontent.com/wIf3HtczQDjHzHuu7vezhqNs0zXAG85F7VmP7nhsTxO3OHegrVXlqIh_DWBYi86FTIGk" h='100%' w={'100%'} />
       </Box>
-    </Flex >
+    </Flex>
   )
 }
 

@@ -1,6 +1,6 @@
 import { Box, Flex, Heading, SkeletonCircle, SkeletonText, VStack } from '@chakra-ui/react'
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import Post from './homeComponent/Post'
 
 const FollowingUserPost = () => {
@@ -18,8 +18,8 @@ const FollowingUserPost = () => {
                     Authorization: `Bearer ${token.token}`
                 }
             }
-            const { data } = await axios.get(`http://localhost:8080/post/followinguserpost`, config)
-            console.log(data)
+            const { data } = await axios.get(`https://social-world.onrender.com/post/followinguserpost`, config)
+       
             setPost(data)
             setLoading(false)
 
@@ -35,15 +35,15 @@ const FollowingUserPost = () => {
 
     return (
         <Flex w='100%'>
-            <Flex direction={'column'} pb={{base:'60px',md:'10px'}} >
-                <Box >
+            <Flex direction={'column'} pb={{base:'10px',md:'10px'}} >
+                <Box  w='100%'>
                     {
-                        loading ? <Box padding='6' boxShadow='lg' bg='white' w='100%'>
+                        loading ? <Box padding='6' boxShadow='lg' bg='white' w='container.xl'>
                             <SkeletonCircle size='20' />
                             <SkeletonText mt='4' noOfLines={1} spacing='4' skeletonHeight='200' />
                             <SkeletonCircle size='20' />
                             <SkeletonText mt='4' noOfLines={1} spacing='4' skeletonHeight='200' />
-                        </Box> : <VStack spacing={'20px'}>
+                        </Box> : <VStack spacing='0px'>
                             {
                                 post?.map(el => (
                                     <Post el={el} key={el?._id} />
@@ -58,4 +58,4 @@ const FollowingUserPost = () => {
     )
 }
 
-export default FollowingUserPost
+export default memo(FollowingUserPost)

@@ -24,17 +24,18 @@ import {
 import { VscTwitter } from "react-icons/vsc"
 import { NavLink } from 'react-router-dom';
 import TweetModal from '../TweetModal';
+import Logout from '../Logout';
 
 const LinkItems = [
     { name: 'Home', icon: FiHome, link: '/' },
     { name: 'Explore', icon: FiSearch, link: '/explore' },
     { name: 'Notifications', icon: FiBell, link: '/notification' },
     { name: 'Messages', icon: FiMessageSquare, link: '/message' },
-    { name: 'Lists', icon: FiList, link: '/list' },
+    { name: 'Lists', icon: FiList, link: '' },
     { name: 'Bookmarks', icon: FiBookmark, link: '/bookmark' },
-    { name: 'Veirfied', icon: FiCheck, link: '/verified' },
+    { name: 'Veirfied', icon: FiCheck, link: '' },
     { name: 'Profile', icon: FiUser, link: '/profile' },
-    { name: 'More', icon: FiMenu, link: '/more' },
+    { name: 'More', icon: FiMenu, link: '' },
 ];
 
 export default function DesktopNav() {
@@ -61,27 +62,30 @@ export default function DesktopNav() {
                     </Box>
                 </Flex>
                 {LinkItems.map((link) => (
-                    <NavItem key={link.name} icon={link.icon} link={link.link === '/profile' ?`${link.link}/${token._id}`:`${link.link}`}>
+                    <NavItem key={link.name} icon={link.icon} link={link.link === '/profile' ? `${link.link}/${token._id}` : `${link.link}`}>
                         {link.name}
                     </NavItem>
                 ))}
 
                 {/* extra added code for identification  */}
                 <TweetModal>
-                <Button variant={'unstyled'} my='13px' fontSize="18px" color="white" bg='blue.400' borderRadius={'50px'} w='100%'>tweet</Button>
+                    <Button variant={'unstyled'} my='13px' fontSize="18px" color="white" bg='blue.400' borderRadius={'50px'} w='100%'>tweet</Button>
                 </TweetModal>
-                <Flex justifyContent={'space-between'} alignItems={'center'} p="10px" _hover={{ backgroundColor: 'gray.200' }} borderRadius={'50px'} cursor={'pointer'}>
+                
+                <Logout>
+                <Flex w='100%' justifyContent={'space-between'} alignItems={'center'} p="10px" _hover={{ backgroundColor: 'gray.200' }} borderRadius={'50px'} cursor={'pointer'}>
                     <Flex gap='10px'>
-                        <Avatar w='35px' h='35px' src="" name='gopi vish' />
+                        <Avatar w='35px' h='35px' src={token.pic} name='gopi vish' />
                         <Flex direction={'column'}>
                             <Heading fontSize={'15px'}>
-                                Gopi
+                                {token.name}
                             </Heading>
-                            <Text fontSize={'15px'}>@gopi12345</Text>
+                            <Text fontSize={'12px'}>@{token.username.split(" ")[0]}..</Text>
                         </Flex>
                     </Flex>
-                    <Link><Heading fontSize={'18px'}>...</Heading></Link>
+                    <Heading fontSize={'18px'}>...</Heading>
                 </Flex>
+                </Logout>
                 {/* till here ..... */}
             </Flex>
         </Box>
