@@ -2,13 +2,14 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const passport = require("passport");
-const authRoute = require("./Route/auth");
+const authRoute = require('./Route/auth');
 const cookieSession = require("cookie-session");
-const passportStrategy = require("./passport");
-const connection = require('./db');
-const authenticate = require("./middleware/authentication");
-const postRouter = require("./Route/postRoute");
 const { userRouter } = require("./Route/userRoute");
+const postRouter = require("./Route/postRoute");
+const authenticate = require("./middleware/authentication");
+const connection = require('./db')
+const passportStrategy = require("./passport");
+
 
 
 const app = express();

@@ -1,9 +1,9 @@
 const authRouter = require("express").Router();
 const passport = require("passport");
-const jwt = require('jsonwebtoken')
-const UserModel = require('../model/userModel')
-const successRedirect = "http://localhost:3000/"
-const failedRedirect = "http://localhost:3000/auth"
+const jwt = require('jsonwebtoken');
+const UserModel = require("../model/userModel");
+const successRedirect = `https://twitter-umber.vercel.app`
+const failedRedirect = `https://twitter-umber.vercel.app/auth`
 
 authRouter.get('/', (req, res) => {
 	res.send('this is auth page')
@@ -17,6 +17,7 @@ authRouter.get("/login/success", async (req, res) => {
 		return res.redirect(`${failedRedirect}?authsuccess=false`)
 	  }
 		try {
+			let num = Math.floor(Math.random() * 10000);
 			const { name, email, picture } = req.user._json
 			const data = await UserModel.find({ email })
 			if (data.length >= 1) {
@@ -24,7 +25,7 @@ authRouter.get("/login/success", async (req, res) => {
 				let id = data[0]._id
 				res.redirect(`${successRedirect}?userID=${id}&token=${token}`)
 			} else {
-				const user = new UserModel({ name, email, pic:picture })
+				const user = new UserModel({ name, email, pic:picture,username:`${name}${num}`})
 				await user.save()
 				var token = jwt.sign({ userId: user._id }, 'twitter');
 				let id = data[0]._id
@@ -36,7 +37,6 @@ authRouter.get("/login/success", async (req, res) => {
 		}
 
 });
-
 
 
 // failed route 
@@ -64,7 +64,7 @@ authRouter.get(
 // logout route 
 authRouter.get("/logout", (req, res) => {
 	req.logout();
-	res.redirect(process.env.CLIENT_URL);
+	res.redirect(failedRedirect);
 });
 
 module.exports = authRouter
