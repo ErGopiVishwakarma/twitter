@@ -20,6 +20,8 @@
 ![Follow1](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/4dbd6273-82e0-4cca-90ad-4db284e9dae5)
 ![Follow2](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/9f3da646-e006-4981-b171-d736ad001df9)
 ![Explore](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/ff152fe4-ca6d-46d2-9708-eb28b65b4920)
+![Logout](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/9a0f7c39-fb5f-4732-978f-a7c4b029cef3)
+
 ![Bookmark](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/451e0c2a-fb67-48f2-8d5b-43a865f520ca)
 ![Message](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/9042c6ae-6447-4c72-942b-08a6eed3e140)
 ![Notification](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/0f83387a-367a-402f-acba-f88c23dc2f9d)
