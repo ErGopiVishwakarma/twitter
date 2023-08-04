@@ -1,43 +1,43 @@
-<img height="70px" width="70px" src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Logo_of_Twitter.svg/1200px-Logo_of_Twitter.svg.png'></img> 
+![Profile1](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/b9246bee-c65a-442e-b1c0-b04c0e531d1c)![Home6](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/2acaa3bd-99ff-4b4d-ba2b-a350575e11a5)![Home6](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/9a4a1b3a-e75c-4347-a9df-36aece4aacb2)<img height="70px" width="70px" src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Logo_of_Twitter.svg/1200px-Logo_of_Twitter.svg.png'></img> 
 # Twitter:
 ### The Twitter project is a web application that emulates the core features of the popular social media platform, Twitter. It allows users to create accounts, post tweets, follow other users, comment on their tweets also user can search other user and see their profile and all tweets
 ## Athenctication
-![Auth](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/4adab8f2-f09a-44a4-8ca6-9f7e3ec31499)
+![Auth](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/50dfe2b4-d56c-485d-a834-5476ca4f16d0)
 ## Home page
-![Home](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/b0ca34fe-ff57-4c56-ae1d-2cbe01c2377e)
+![Home](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/a053b3b6-a77b-4256-9cab-9c3d5a67503b)
 ## Following section
-![Home1](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/ec508744-2eec-42ca-8a4e-27643c82c884)
+![Home1](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/a4861ebb-7220-425f-9dd9-247e4032b5d0)
 ## Search user
-![Home3](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/63649073-58c7-45c7-8550-9c42c8dd6e18)
+![Home3](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/077d19dd-0fb7-4eb5-ba55-09df526ec713)
 ## Adding a new post
-![Home4](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/cd9d5bfc-efe5-48c5-99ae-b3378330375a)
+![Home4](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/2fdd7e5a-92d1-44f6-acfe-9733c393c2d6)
 ## After adding new post
-![Home5](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/d4af4fb6-6678-44f8-8ac3-c253deb0f6dc)
+![Home5](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/441be9e9-b753-408f-82a2-51144d88623a)
 ## Tweet modal 
-![Home6](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/a4830d2b-2c44-4ea5-b5fd-018bcf5a8ffd)
-![Home7](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/b717d3ad-f949-4f15-9beb-d733c0633ee0)
-![Home8](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/b2678201-9279-4f14-bfe5-fd3aaa4e2232)
+![Home6](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/35305e5e-d2d3-40c7-9a80-70bac60e9538)
+![Home7](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/68bccad0-4c18-4b03-8b66-05f9fe319c81)
+![Home8](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/50dfb711-25d3-4be4-90c2-68de39446d81)
 ## Commnet modal 
-![Comment](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/81eee834-97ad-4e04-804d-77ede22e41c9)
+![Comment](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/ed3604d8-b26e-4db9-b9e0-5f09703dabab)
 ## Delete a post
-![Delete3](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/75cf7df2-6451-40cd-a957-b448ed75010b)
-![Delete2](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/c9200325-59ee-40ae-8bd1-7fbf26a56b53)
+![Delete3](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/54e247a4-4627-4801-a839-89b77bfa12dc)
+![Delete2](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/03b8b125-4844-4efd-9487-e44c856800fb)
 ## After deleting post
-![Delete4](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/531670ea-03a9-440e-889f-100abadcbb0e)
+![Delete4](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/f33bfbcb-ef20-4c97-bb0e-4f40a2fce8ad)
 ## Profile page
-![Profile](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/cc7777b8-f55f-4c4d-9eff-a90668e78bf5)
-![Profile1](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/21155cd2-85ba-41d0-aaaf-a41eb6831537)
+![Uploading Profile.png…]()
+![Profile1](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/961bb036-2c03-4205-8b78-d860a322b535)
 ## Follow and Unfollow
-![Follow](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/70d1d4d7-ee88-4277-ae2a-78f720e3ebdf)
-![Follow1](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/4dbd6273-82e0-4cca-90ad-4db284e9dae5)
-![Follow2](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/9f3da646-e006-4981-b171-d736ad001df9)
+![Follow](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/c6fe812a-30c8-46b1-bc1c-8f739df3d020)
+![Follow1](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/8d85cdbd-65a4-400e-a512-8a1e71ca80a7)
+![Follow2](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/cb02d19a-27ac-45f1-be18-27c5c4a1b281)
 ## Explore page
-![Explore](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/ff152fe4-ca6d-46d2-9708-eb28b65b4920)
+![Explore](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/aaaf4bf0-1b79-437e-83ea-dafe9209a6d9)
 ## Bookmark page
-![Bookmark](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/451e0c2a-fb67-48f2-8d5b-43a865f520ca)
+![Bookmark](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/23ba9a02-9c78-4cf2-84d6-344931992135)
 ## Message page
-![Message](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/9042c6ae-6447-4c72-942b-08a6eed3e140)
+![Message](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/ea7351ff-bf8b-40ea-b60f-ec0674bcd33c)
 ## Notification page
-![Notification](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/0f83387a-367a-402f-acba-f88c23dc2f9d)
+![Notification](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/3f3925d0-e6c2-4c3b-8231-177da92c3c86)
 ## Logout modal
-![Logout](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/2375a0cf-ef3b-44d0-8a48-542011b20d95)
+![Logout](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/60f41950-eea9-4fe4-b14d-dc660d95e113)
