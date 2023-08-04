@@ -1,4 +1,4 @@
-![Profile1](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/b9246bee-c65a-442e-b1c0-b04c0e531d1c)![Home6](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/2acaa3bd-99ff-4b4d-ba2b-a350575e11a5)![Home6](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/9a4a1b3a-e75c-4347-a9df-36aece4aacb2)<img height="70px" width="70px" src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Logo_of_Twitter.svg/1200px-Logo_of_Twitter.svg.png'></img> 
+<img height="70px" width="70px" src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Logo_of_Twitter.svg/1200px-Logo_of_Twitter.svg.png'></img> 
 # Twitter:
 ### The Twitter project is a web application that emulates the core features of the popular social media platform, Twitter. It allows users to create accounts, post tweets, follow other users, comment on their tweets also user can search other user and see their profile and all tweets
 ## Athenctication
@@ -25,7 +25,7 @@
 ## After deleting post
 ![Delete4](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/f33bfbcb-ef20-4c97-bb0e-4f40a2fce8ad)
 ## Profile page
-![Uploading Profile.png…]()
+![Profile](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/cc0b2709-7181-4671-a303-25ed899b177e)
 ![Profile1](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/961bb036-2c03-4205-8b78-d860a322b535)
 ## Follow and Unfollow
 ![Follow](https://github.com/ErGopiVishwakarma/twitter/assets/114371170/c6fe812a-30c8-46b1-bc1c-8f739df3d020)
